@@ -1,0 +1,120 @@
+
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        <ion-button  style="margin-top: 4%" [routerLink]="['/create-client']"> Créer un client <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>  
+  </ion-toolbar>
+
+  <ion-row >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+      <ion-list >
+
+        <ion-row >
+          <ion-col col-12 col-md-12 padding>
+        
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >   
+                <h5> <b>Ajouter une tâche</b> </h5>
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item  class="roundedInput">
+                  <ion-label color="dark" position="stacked">Titre</ion-label>
+                  <ion-input inputmode="text" [(ngModel)]="title"></ion-input>
+                </ion-item>    
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput" >
+                  <ion-label color="dark" position="stacked">Description ( max 300 caractères )</ion-label>
+                  <ion-textarea maxlength="300" rows="4" inputmode="text" [(ngModel)]="content"></ion-textarea>
+                </ion-item>  
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >  
+               <ion-item class="roundedInput">
+                <ion-label position="floating">Deadline</ion-label>
+                <ion-label *ngFor="let item of posts">  
+                  <b>{{item.deadlineTask  | date: 'dd/MM/yyyy H:mm'}}</b>
+                  </ion-label> 
+            
+               <ion-datetime  displayFormat="MM/DD/YYYY" [(ngModel)]="deadlineTask"></ion-datetime>
+              </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput" >
+                  <ion-label position="stacked"> Type de tâche </ion-label>
+                  <ion-select multiple="true" [(ngModel)]="type"  (ionChange)="onChangeType($event)">
+                    <ion-select-option *ngFor="let item of poststypes" value="{{event}}">{{item.eventName}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label position="stacked">Priorité</ion-label>
+                  <ion-select multiple="false" [(ngModel)]="priority" [value]="priority">
+                    <ion-select-option value="1">Priorité 1</ion-select-option>
+                    <ion-select-option value="2">Priorité 2</ion-select-option>
+                    <ion-select-option value="3">Priorité 3</ion-select-option>
+                  </ion-select>
+                </ion-item> 
+              </ion-col>
+            </ion-row>
+         
+    
+            <ion-item  >
+              <div class="item-note ion-padding" slot="end">
+                <ion-button color="success" size="medium" (click)="doSave()">Enregistrer</ion-button>
+              </div>
+          </ion-item>
+    
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+      </ion-col>
+  
+
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+
+
+</ion-col>
+   
+  
+</ion-row>
+
+</ion-content>
+
+
+
+
+
+
+
+  

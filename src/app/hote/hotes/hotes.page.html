@@ -1,0 +1,70 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+
+
+  <ion-content responsive-sm color="light" class="ion-padding">
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>   </ion-title>
+
+        <ion-buttons slot="end">
+          <div  slot="end">
+            <ion-item  class="border-header" color="grey">
+            <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+            <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+            <ion-button  style="margin-top: 4%" [routerLink]="['/create-hote']"> Ajouter un hôte <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+            </ion-item>
+          </div>
+      </ion-buttons>
+    </ion-toolbar>
+  
+  <ion-list >
+
+
+      <ion-row >
+      <ion-col col-md-12 color="primary">
+          <ion-searchbar type="text"  placeholder="Rechercher hôte..." debounce="200" (ionChange)="onChangeWord($event)"></ion-searchbar> 
+      </ion-col>
+      </ion-row>
+ 
+    </ion-list>
+        <ion-item-divider color="light">
+          <ion-label>
+            Nombre de résultats : <b>{{total}} </b> 
+          </ion-label>
+          <ion-label  slot="end">
+            Page : <b>{{currentpage}} / {{last_page}}</b>
+          </ion-label>
+
+        </ion-item-divider>
+
+      <ion-list>
+
+ 
+      
+      <ion-item *ngFor="let item of posts" >
+        <ion-thumbnail slot="start">
+          <img class="circular" src="../assets/user.png"  >
+        </ion-thumbnail>
+        <ion-label (click)="edit($event, item)"> 
+          {{item.firstName}}     {{item.lastName}}
+        </ion-label> 
+
+  
+        <div class="item-note" slot="end">
+         
+          <ion-button ion-button outline item-end small color="success" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+  
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement…">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+
+</ion-list>
+</ion-content>
+

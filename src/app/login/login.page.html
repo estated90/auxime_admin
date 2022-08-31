@@ -1,0 +1,92 @@
+
+
+<ion-content >
+
+ <ion-grid style="padding-top: 5%;">
+  
+    <ion-row>
+    <ion-col sizeLg="4" sizeMd="4" sizeXs="12" style="border: 2px;border-width: 2px;">
+    </ion-col>
+    <ion-col sizeLg="4" sizeMd="4" sizeXs="12" style="border: 2px;border-width: 2px;">
+       <!-- Logo -->
+       <ion-row>
+        <ion-col sizeLg="4" sizeMd="4" sizeXs="12">
+          <img class="circular" src="../assets/logo2.png" width="200px" >
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="4" sizeXs="12">
+          <img class="circular" src="../assets/logo.png" width="200px" >
+        </ion-col>
+        <ion-col sizeLg="4" sizeMd="4" sizeXs="12">
+          <img class="circular" src="../assets/logo3.png" width="200px" >
+        </ion-col>
+      </ion-row>
+
+
+
+    <h2> Administration </h2>
+
+    V1.2.1
+
+    <!-- Login form -->
+    <form [formGroup]="onLoginForm" class="list-form">
+      <ion-item >
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Email
+        </ion-label>
+        <ion-input  type="email"  [(ngModel)]="email" formControlName="email"></ion-input>
+      </ion-item>
+
+
+
+      <p ion-text class="text08" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">
+        <ion-text color="light">
+          * Email requis.
+        </ion-text>
+      </p>
+
+      <ion-item >
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Mot de passe 
+        </ion-label>
+        <ion-input  type="password"  [(ngModel)]="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
+        <ion-text color="light">
+            * Mot de passe requis.
+        </ion-text>
+        </p>
+    </form>
+
+
+
+    <div class="ion-margin-top ion-text-right" style="display: none;">
+    <a  href="/forgotpassword">
+      <ion-text >
+        <strong> Mot de passe oublié</strong>
+      </ion-text>
+    </a>
+  </div>
+
+
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="secondary" (click)="goLogin()" [disabled]="!onLoginForm.valid" tappable>
+      Connexion
+      </ion-button>
+    </div>
+
+
+
+
+    </ion-col>
+    <ion-col sizeLg="4" sizeMd="4" sizeXs="12" style="border: 2px;border-width: 2px;">
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+   
+
+
+
+</ion-content>

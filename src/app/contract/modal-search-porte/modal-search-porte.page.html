@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <ion-button fill="outline" (click)="closeModal()">
+          Annuler 
+        </ion-button>
+      </ion-buttons>
+      <ion-title> Choisir un porté </ion-title>
+      <ion-buttons slot="primary">
+      </ion-buttons>
+    </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+  
+
+    <ion-list>
+      <ion-item *ngFor="let item of posts" (click)="selectPorte($event, item)" >
+        <ion-thumbnail slot="start">
+          <img class="circular" src="../assets/user.png"  >
+        </ion-thumbnail>
+        <ion-label > 
+          {{item.firstName}} {{item.lastName}}
+          <br> 
+        </ion-label> 
+      </ion-item>
+      </ion-list>
+  
+  </ion-grid>
+</ion-content>
+
+
+
+
+
+  
+

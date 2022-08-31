@@ -1,0 +1,99 @@
+
+  <ion-content responsive-sm color="light" class="ion-padding">
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>   </ion-title>
+      <ion-buttons slot="end">
+
+        <div  slot="end">
+          <ion-item  class="border-header" color="grey">
+          <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+          <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+          <ion-button  style="margin-top: 4%" [routerLink]="['/create-client']"> Créer un client <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+          </ion-item>
+        </div>
+    </ion-buttons>  
+    
+    </ion-toolbar>
+
+
+
+
+  <ion-list >
+
+
+      <ion-row >
+      <ion-col col-md-12 col-md-12 >
+          <ion-searchbar type="text"  placeholder="Nom client" debounce="200" (ionChange)="onChangeWord($event)"></ion-searchbar> 
+      </ion-col>
+      </ion-row>
+
+      <ion-row responsive-sm color="primary">
+
+
+        <ion-col col-12 col-md-6 >
+          <ion-item>
+            <ion-label position="stacked"> Statut </ion-label>
+            <ion-select multiple="false" [(ngModel)]="exitstatus" (ionChange)="onChangeCategory($event)">
+              <ion-select-option value="true"> Actif </ion-select-option>
+              <ion-select-option value="false"> Inactif </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+          <ion-col col-12 col-md-6 >            
+          </ion-col>
+
+        </ion-row>
+
+    </ion-list>
+        <ion-item-divider color="light">
+          <ion-label>
+            Nombre de résultats : {{total}} 
+          </ion-label>
+            <div class="item-note" slot="end">
+                Page : <b>{{currentpage}} / {{last_page}}</b>
+            </div>
+     
+        </ion-item-divider>
+
+      <ion-list>
+      <ion-item *ngFor="let item of posts"  >
+
+        <ion-label (click)="edit($event, item)"> 
+        {{item.denomination}}
+        </ion-label> 
+
+
+        <ion-label (click)="edit($event, item)"> 
+       siren : {{item.siren}}
+          </ion-label> 
+  
+
+        <ion-label > 
+
+
+         
+        <ion-button  *ngIf="item.status"  size="small" shape="round" color="success"> Actif </ion-button>
+        <ion-button  *ngIf="!item.status" size="small" shape="round" color="danger"> Inactif </ion-button>
+        </ion-label> 
+
+
+        <div class="item-note" slot="end">
+          <ion-button ion-button outline item-end small color="success" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+
+      </ion-item>
+  
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement…">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+ 
+</ion-list>
+</ion-content>
+

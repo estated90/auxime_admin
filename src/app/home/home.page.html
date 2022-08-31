@@ -1,0 +1,276 @@
+
+<ion-content  padding color="light" >
+  <ion-grid>
+
+
+    <ion-row  >
+
+      <ion-col sizeLg="9" sizeMd="9" sizeXs="12"  padding   class="ion-text-right"> 
+      
+
+          <ion-button *ngIf="roleUser==6" color="success" (click)="openModal()"> + </ion-button>
+  
+          <ion-slides pager="true" [options]="slideOpts" style="height: 300px;width:100%;border-radius: 10px;"  speed="300" >
+            <ion-slide *ngFor="let item of sliderdata" [ngStyle]= "{'background-image': 'url(data:+item.contenttype+;base64,' + item.image + ')'}" style="padding-top: 120px;"  >
+              <ion-button *ngIf="roleUser==6" style="position: absolute;right: 20px;bottom: 10px;" ion-button outline small color="light" (click)="editslide($event, item)"><ion-icon small ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+              <ion-button *ngIf="roleUser==6" style="position: absolute;right: 80px;bottom: 10px;" ion-button outline small color="light" (click)="deleteslide($event, item)"><ion-icon small ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+                <div style="background-color:#f7f7f7;top:300px; width:400px; height:150px;">
+                  <h1>{{item.title}}</h1>
+                  <span [innerHTML]=item.content></span>
+               </div>
+              </ion-slide>
+          </ion-slides>
+   
+     
+        <ion-row style="padding-top:20px;" *ngIf="roleUser>1">
+          <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+          <div id="cercle1">
+            <div class="text-cercle">
+           {{contractToValidate }}
+          </div>
+          <div class="text-cercle-subtitle">
+            Contrats à Valider
+          </div>
+          </div>
+
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > {{contractToModify }} </ion-button>    
+            <p> <b> Contrats à modifier </b>  </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > {{contractValidated}} </ion-button>    
+            <p> <b> Contrats validés </b>  </p> 
+          </ion-item>  
+
+     
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > <ion-icon name="ios-arrow-forward"></ion-icon></ion-button>    
+            <p> <b> Voir les contrats </b> </p> 
+          </ion-item>  
+     
+          <ion-item  color="light"  [routerLink]="['/create-cape']" >
+            <ion-button  color="success" ><ion-icon name="md-add"></ion-icon></ion-button>    
+            <p> <b> Ajouter un contrat </b> </p> 
+          </ion-item>  
+
+
+        </ion-col>
+        <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+          <div id="cercle2">
+            <div class="text-cercle">
+           {{numberPorte}}
+          </div>
+          <div class="text-cercle-subtitle">
+           Portés
+          </div>
+          </div>
+          <ion-item  color="light"  [routerLink]="['/scopes']" >
+            <ion-button  color="primary" > {{numberPorteExiting}}</ion-button>    
+            <p> <b> Nombre de portés total </b> </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/scopes']" >
+            <ion-button  color="primary" > <ion-icon name="ios-arrow-forward"></ion-icon></ion-button>    
+            <p> <b> Voir mes portés </b> </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/create-scope']" >
+            <ion-button  color="primary" ><ion-icon name="md-add"></ion-icon></ion-button>    
+            <p> <b> Ajouter un porté</b> </p> 
+          </ion-item>  
+        </ion-col>
+
+
+        <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+          <div id="cercle3">
+            <div class="text-cercle">
+            {{trainingIncomming}}
+          </div>
+          <div class="text-cercle-subtitle">
+            Formations à venir
+          </div>
+          </div>
+          <ion-item  color="light"  [routerLink]="['/tasks']" >
+            <ion-button  color="tertiary"> {{taskDeadlines}} </ion-button>    
+            <p> <b>Tâches à éffectuer </b> </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/calendar']" >
+            <ion-button  color="tertiary"> {{trainingSubscribed}} </ion-button>    
+            <p> <b>Formations </b> </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/calendar']" >
+            <ion-button  color="tertiary">  <ion-icon name="ios-arrow-forward"></ion-icon> </ion-button>    
+            <p> <b>Voir les formations</b> </p> 
+          </ion-item>  
+        </ion-col>
+
+
+        <ion-col col-4 col-md-4 color="primary" class="ion-text-center">
+          <div id="cercle4">
+          <div class="text-cercle">
+          {{invoice}}
+          </div>
+          <div class="text-cercle-subtitle">
+           Factures
+          </div>
+          </div>
+          <ion-item  color="light"   >
+            <ion-button  color="warning">  <ion-icon name="ios-arrow-forward"></ion-icon> </ion-button>    
+            <p> <b> Voir les factures </b> </p> 
+          </ion-item>  
+          <ion-item  color="light"   >
+            <ion-button  color="warning">  <ion-icon name="ios-arrow-forward"></ion-icon> </ion-button>    
+            <p> <b> Créer une facture </b> </p> 
+          </ion-item>  
+        </ion-col>
+
+      </ion-row >
+
+
+
+
+
+       
+      <ion-row style="padding-top:20px;" *ngIf="roleUser==1">
+        <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+          <div id="cercle1">
+            <div class="text-cercle">
+           {{contractToValidate }}
+          </div>
+          <div class="text-cercle-subtitle">
+            Contrats à Valider
+          </div>
+          </div>
+
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > {{contractToModify }} </ion-button>    
+            <p> <b> Contrats à modifier </b>  </p> 
+          </ion-item>  
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > {{contractValidated}} </ion-button>    
+            <p> <b> Contrats validés </b>  </p> 
+          </ion-item>  
+
+     
+          <ion-item  color="light"  [routerLink]="['/contrats-cape']" >
+            <ion-button  color="success" > <ion-icon name="ios-arrow-forward"></ion-icon></ion-button>    
+            <p> <b> Voir les contrats </b> </p> 
+          </ion-item>  
+     
+          <ion-item  color="light"  [routerLink]="['/create-cape']" >
+            <ion-button  color="success" ><ion-icon name="md-add"></ion-icon></ion-button>    
+            <p> <b> Ajouter un contrat </b> </p> 
+          </ion-item>  
+
+
+        </ion-col>
+        <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+          <div id="cercle3">
+            <div class="text-cercle">
+            {{trainingIncomming}}
+          </div>
+          <div class="text-cercle-subtitle">
+            Formations à venir
+          </div>
+          </div> 
+          <ion-item  color="light"  [routerLink]="['/calendar']" >
+            <ion-button  color="tertiary"> {{trainingSubscribed}} </ion-button>    
+            <p> <b>Formations </b> </p> 
+          </ion-item> 
+        </ion-col>
+
+
+        <ion-col col-3 col-md-3 color="primary" class="ion-text-center">
+         
+        </ion-col>
+
+
+        <ion-col col-4 col-md-4 color="primary" class="ion-text-center">
+   
+        </ion-col>
+
+      </ion-row >
+
+
+  
+      </ion-col>
+
+
+
+
+
+
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="12"  padding style="padding-top:20px;"> 
+     
+        <div  style="width: 100%;text-align: center;background-color: white; border-radius: 10px;
+        box-shadow:1px 1px 2px 2px rgb(215, 215, 215);">
+        <ion-item-divider color="dark" style="text-align:center;">
+         
+          WEBINAIRES / FORMATIONS
+       
+         </ion-item-divider>
+        <div style="padding-top:10px;" [routerLink]="['/calendar']">
+          
+
+          <ion-calendar [(ngModel)]="arr"
+              [options]="optionsMulti"
+              [type]="string"
+              [format]="'YYYY-MM-DD'">
+</ion-calendar>
+
+</div>
+
+<ion-row>
+
+      
+          <ion-col col-6 col-md-6 color="primary" class="ion-text-center" >
+              <ion-item no-lines>
+                <ion-label>Formations</ion-label>
+                <ion-checkbox  checked="true" slot="start" color="primary" ></ion-checkbox>
+              </ion-item>
+            
+              <ion-item style="display: none;">
+                <ion-label>Envols</ion-label>
+                <ion-checkbox  checked="true" slot="start" color="warning" ></ion-checkbox>
+              </ion-item>
+            
+
+              <ion-item style="display: none;">
+                <ion-label>Webinaires</ion-label>
+                <ion-checkbox  checked="true" slot="start" color="tertiary" ></ion-checkbox>
+              </ion-item>
+            
+              <ion-item style="display: none;">
+                <ion-label>Parcours intégration</ion-label>
+                <ion-checkbox  checked="true" slot="start" color="success" ></ion-checkbox>
+              </ion-item>
+            
+
+          </ion-col>
+          <ion-col col-4 col-md-4 color="primary" class="ion-text-right" >
+            <ion-row style="text-align:right">
+              <ion-button  color="primary" [routerLink]="['/calendar']" > <ion-icon ios="ios-eye" md="md-eye"></ion-icon></ion-button>    
+             </ion-row>
+            
+          <ion-row >
+            <ion-button  color="primary" [routerLink]="['/create-eventplanning']" >  <ion-icon ios="ios-add" md="md-add"></ion-icon></ion-button>    
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </div>
+      </ion-col>
+
+
+
+
+
+
+     
+     </ion-row>
+
+</ion-grid>
+   
+
+
+</ion-content>
+
+
+

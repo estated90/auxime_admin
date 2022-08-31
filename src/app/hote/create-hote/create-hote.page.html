@@ -1,0 +1,135 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    
+      <ion-buttons slot="end">
+        <div  slot="end">
+          <ion-item  class="border-header" color="grey">
+          <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+          <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+          </ion-item>
+        </div>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+  <ion-row >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+        <ion-list lines="none">
+              <ion-row >
+                <ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+                </ion-col>
+                <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+                  <ion-item >
+                    <h5> <b>Créer un hôte </b> </h5>
+                    </ion-item>
+
+             
+                  <ion-item >
+                    <ion-label> 
+                       <b>Civilité * </b> <br>
+                      </ion-label> 
+                      <ion-label> 
+                        <ion-item class="roundedInput">
+                          <ion-label position="stacked"></ion-label>
+                          <ion-select multiple="false" [(ngModel)]="title" value="{{title}}">
+                            <ion-select-option value="Mlle">Mlle</ion-select-option>
+                            <ion-select-option value="Mme">Mme</ion-select-option>
+                            <ion-select-option value="M">M</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+            
+                      </ion-label> 
+                    </ion-item>
+
+
+                    <ion-item >
+                      <ion-label> 
+                         <b>Nom *</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Nom</ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="lastname" >  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+
+                    <ion-item >
+                      <ion-label> 
+                         <b>Prénom *</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Prénom</ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="firstname" >  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+
+
+                      <ion-item >
+                        <ion-label> 
+                           <b>Nationalité *</b> <br>
+                          </ion-label> 
+                          <ion-label> 
+                            <ion-item class="roundedInput">
+                              <select id="standard-select" [(ngModel)]="nationality" >
+                                <option value="FRANCAISE">Française</option>
+                                <option value="UE">UE</option>
+                                <option value="HORS UE">Hors UE</option>
+                              </select>
+                            </ion-item>
+                
+                          </ion-label> 
+                        </ion-item>
+
+
+                    <ion-item >
+                      <ion-label> 
+                         <b>E-mail *</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">E-mail</ion-label>
+                            <ion-input inputmode="email"[(ngModel)]="email">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+
+      
+          <ion-item>
+            <ion-label> 
+              <b>  Choisir une entreprise *</b>
+              </ion-label> 
+              <ion-label> 
+                <ion-item class="roundedInput">
+                    <select id="standard-select" [(ngModel)]="portagecompagny" >
+                      <option value="AUXIME">AUXIME</option>
+                      <option value="COELIS">COELIS</option>
+                      <option value="COELIS">ENVOYLS</option>
+                    </select>
+                  </ion-item>
+          </ion-label> 
+        </ion-item>
+
+          
+            <ion-item>
+            <div slot="end">
+            <ion-button color="danger" size="medium" [routerLink]="['/hotes']" >Annuler </ion-button>
+            <ion-button color="success" size="medium" (click)="doSaveProfil()">Suivant</ion-button>
+            </div>
+          </ion-item>
+
+        </ion-col>
+    </ion-row>
+    </ion-list>
+</ion-col>
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+</ion-col>
+</ion-row>
+</ion-content>

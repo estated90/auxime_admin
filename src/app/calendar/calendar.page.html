@@ -1,0 +1,113 @@
+
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/create-eventplanning']"> Ajouter un évènement  <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>
+  </ion-toolbar>
+
+
+<ion-row >
+
+<ion-col sizeLg="7" sizeMd="7" sizeXs="12" >
+
+
+  <ion-row color="primary"  *ngIf="lngevnt==0">
+    <ion-col col-12 col-md-6 padding>
+      <ion-item-divider color="light">
+        <ion-label no-lines>
+         <b>Formation</b>
+        </ion-label>
+      </ion-item-divider>
+      <ion-list > 
+        <ion-item >
+        <ion-label  class="ion-text-wrap" >
+          <p> Aucun événement sélectionné</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row color="primary"  *ngIf="lngevnt==1">
+    <ion-col col-12 col-md-6 padding>
+
+      <ion-item-divider color="light">
+        <ion-label no-lines>
+         <b>Formation</b>
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-list > 
+        <ion-item *ngFor="let item of training" >
+        <ion-label  class="ion-text-wrap" >
+          <h2> <b> {{item.trainingName}}</b></h2>
+          <p>{{item.trainingDescription}}</p>
+          <p>{{item.duration}} min </p> 
+          <p> <ion-button   slot="end" size="small" shape="round" color="light"> {{item.parcourType}} </ion-button></p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let item of hote">
+        <ion-label  class="ion-text-wrap" >
+        <p>  Formateur : <b> {{item.firstName}} {{item.lastName}} </b> </p>
+      </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let item of postsevent">
+        <ion-label  class="ion-text-wrap" >
+        <h2> <b>{{item.dayHourEvent | date: 'dd/MM/yyyy  hh:mm:ss' }}</b></h2>
+        <p> <ion-button  color="primary" slot="end" size="small" target="_blank" shape="round"  href="{{item.zoomUserLink}}"> Lien zoom  </ion-button></p>
+        <p> Mot de passe :  <b>{{item.zoomPassword}}</b> </p>
+      </ion-label>
+      </ion-item>
+
+      <ion-item   *ngIf="roleUser==1">
+        <ion-label  class="ion-text-wrap" >
+        <h5> <b> Inscription </b> </h5>
+        <p> <ion-button  color="primary" slot="end" size="small" target="_blank" shape="round" (click)="SignupEvent()" > Je souhaite m'inscrire à la formation  </ion-button></p>
+      </ion-label>
+      </ion-item>
+
+    </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row color="primary" *ngIf="iduser==idhote && lngevnt==1">
+    <ion-col col-12 col-md-6 padding>
+      <ion-item-divider color="light">
+        <ion-label no-lines>
+         <b>Lien formateur</b>
+        </ion-label>
+      </ion-item-divider>
+      <ion-list >
+      <ion-item *ngFor="let item of postsevent">
+        <ion-label  class="ion-text-wrap" >
+        <p> <ion-button  color="primary" slot="end" size="small" target="_blank" shape="round"  href="{{item.zoomTrainerLink}}"> Lien zoom formateur </ion-button></p>
+      </ion-label>
+      </ion-item>
+    </ion-list>
+    </ion-col>
+  </ion-row>
+
+</ion-col>
+   
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" style="padding-top: 60px;">
+<ion-list>
+<full-calendar #calendar [options]="calendarOptions" ></full-calendar>
+</ion-list>
+</ion-col>
+
+</ion-row>
+
+</ion-content>
+

@@ -1,0 +1,72 @@
+
+  <ion-content responsive-sm color="light" class="ion-padding">
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>   </ion-title>
+      <ion-buttons slot="end">
+        <div  slot="end">
+          <ion-item  class="border-header" color="grey">
+          <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+          <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+          </ion-item>
+        </div>
+    </ion-buttons>
+    </ion-toolbar>
+
+
+
+  <ion-list >
+
+
+    <ion-row  class="ion-padding"  >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" > 
+        <ion-item class="roundedInput">
+          <ion-label color="dark" position="stacked">Ajouter un type</ion-label>
+          <ion-input inputmode="text"[(ngModel)]="title" >  </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+        <ion-button color="danger" size="medium" (click)="doSave()">Ajouter</ion-button>
+      </ion-col>
+     </ion-row>
+
+
+
+      <ion-row >
+      <ion-col col-md-12 color="primary">
+          <ion-searchbar type="text"  placeholder="Rechercher un type"debounce="200" (ionChange)="onChangeWord($event)"></ion-searchbar> 
+      </ion-col>
+      </ion-row>
+    
+ 
+    
+        <ion-item-divider color="light">
+          <ion-label>
+            Nombre de résultats : {{total}} 
+          </ion-label>
+        </ion-item-divider>
+
+
+
+  
+      <ion-item *ngFor="let item of posts" >
+     
+        <ion-label color="dark" > <ion-icon name="albums"  slot="start"></ion-icon> 
+          <b>{{item.eventName}}</b>
+        </ion-label>
+        <div class="item-note" slot="end">
+          <ion-button ion-button outline item-end small color="success" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+  
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement…">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+</ion-list>
+</ion-content>
+

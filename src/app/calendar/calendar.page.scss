@@ -1,0 +1,27 @@
+
+
+
+
+  :host {
+    full-calendar{
+    --ion-color-primary: #000000;
+  }
+
+  .title-formation {
+    color:#E52364;
+    font-size: 25px;
+    text-transform: lowercase;
+ 
+    }
+  .title-formation::first-letter {
+    text-transform: uppercase
+    }
+
+    .subtitle-formation {
+      color:#4f5156;
+      font-size: 25px;
+      }
+  
+  
+
+}

@@ -1,0 +1,448 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>  
+
+  </ion-toolbar>
+
+  <ion-row >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+        <ion-list lines="none"  *ngIf="edit==true">
+
+
+          <ion-row >
+            <ion-col sizeLg="3" sizeMd="3" sizeXs="12" >
+            </ion-col>   
+
+              <ion-col sizeLg="9" sizeMd="9" sizeXs="12" >    
+              <ion-item >
+                <h3>  <b> Client </b></h3>   <br>
+              </ion-item>
+
+              <ion-segment  (ionChange)="segmentChanged($event)" [(ngModel)]="segType" scrollable value="info">
+                <ion-segment-button value="info" layout="icon-start">
+                  <ion-label>Informations </ion-label>
+                  <ion-icon name="person"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+          
+              <ng-container [ngSwitch]="segType">
+                <div *ngSwitchCase="'info'">
+
+                  <ion-item >
+                    <h5>   Infomations génerales</h5>      
+                  </ion-item>  
+                  
+
+                  <ion-row  class="ion-padding"  >
+                    <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                      <ion-item class="roundedInput">
+                        <ion-label color="dark" position="stacked">Nom du client * </ion-label>
+                        <ion-input inputmode="text"[(ngModel)]="name">  </ion-input>
+                      </ion-item>
+                    </ion-col>
+                   </ion-row>
+
+
+                   <ion-row  class="ion-padding"  >
+                    <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                      <ion-item class="roundedInput">
+                        <ion-label color="dark" position="stacked">Siren * </ion-label>
+                        <ion-input inputmode="text"[(ngModel)]="siren">  </ion-input>
+                      </ion-item>
+                    </ion-col>
+                   </ion-row>
+
+                   <ion-row  class="ion-padding"  >
+                    <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                      <ion-item >
+                        Statut : 
+                        <ion-button  [hidden]="statuspartenaire==false"  size="medium" shape="round" color="success"> Actif </ion-button>
+                        <ion-button  [hidden]="statuspartenaire==true" size="medium" shape="round" color="danger"> Inactif </ion-button>     
+                      </ion-item>
+                    </ion-col>
+                    <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                      <ion-item >
+
+                        <ion-button   [hidden]="statuspartenaire==true" size="medium" color="light" (click)="activepartenaire()"> Activer </ion-button>
+                        <ion-button  [hidden]="statuspartenaire==false" size="medium" outline  color="light" (click)="desactivepartenaire()"> Désactiver </ion-button>
+          
+                      </ion-item>
+                    </ion-col>
+
+                   </ion-row>
+
+                      
+                   <ion-item >
+                    <h5>   Adresse</h5>      
+                  </ion-item> 
+                  
+                  
+                    <ion-row  class="ion-padding"  >
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Numero</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="number" >  </ion-input>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Adresse</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="street">  </ion-input>
+                        </ion-item>
+                      </ion-col>
+                     </ion-row>
+        
+                    <ion-row  class="ion-padding"  >
+                      <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">CP</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="zip" >  </ion-input>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col sizeLg="7" sizeMd="7" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Ville</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="city">  </ion-input>
+                        </ion-item>
+                      </ion-col>
+                     </ion-row>
+        
+
+                     <ion-row  class="ion-padding"  >
+                      <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked"> Adresse complement</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="addressComplement">  </ion-input>
+                        </ion-item>
+                      </ion-col>
+                     </ion-row>
+        
+                    <ion-item   >
+                      <h5> Contact(s)</h5>    
+                        <ion-button   slot="end" ion-button outline item-end small color="success" (click)="editnewcontact()" *ngIf="formnewcontact==false"> Ajouter un nouveau <ion-icon ios="ios-add" md="md-add"></ion-icon></ion-button>
+                        <ion-button   slot="end"ion-button outline item-end small color="success" (click)="editnewcontact()" *ngIf="formnewcontact==true"> Ajouter un nouveau <ion-icon ios="ios-close" md="md-close"></ion-icon></ion-button>
+                    </ion-item>
+            
+                    <ion-item *ngIf="formnewcontact==true" >
+                    <ion-label> 
+                      <ion-item class="roundedInput">
+                        <ion-label color="dark" position="stacked">Nom</ion-label>
+                        <ion-input inputmode="text"[(ngModel)]="lastnamenew" >  </ion-input>
+                      </ion-item>
+                      </ion-label> 
+                      <ion-label> 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Prénom</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="firstnamenew">  </ion-input>
+                        </ion-item>
+                      </ion-label> 
+                    </ion-item>
+                    <ion-item  *ngIf="formnewcontact==true" >
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">E-mail</ion-label>
+                            <ion-input inputmode="email"[(ngModel)]="emailnew">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+
+                        <ion-row  class="ion-padding" *ngIf="formnewcontact==true">
+                         
+                          <ion-col sizeLg="2" sizeMd="2" sizeXs="12" > 
+                            <ion-item class="roundedInput">
+                              <ion-label color="dark" position="stacked">Indicatif </ion-label>
+                              <ion-input inputmode="text"[(ngModel)]="indicatifnew" >  </ion-input>
+                            </ion-item>
+                          </ion-col>
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                            <ion-item class="roundedInput">
+                              <ion-label color="dark" position="stacked">Télephone</ion-label>
+                              <ion-input inputmode="text"[(ngModel)]="phonenew">  </ion-input>
+                            </ion-item>
+                          </ion-col>
+
+                          <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                            <ion-item class="roundedInput">
+                              <ion-label position="stacked">Type</ion-label>
+                              <ion-select multiple="false" [(ngModel)]="phonenumbertypenew" (ionChange)="onChangeTypenewPhone($event)">
+                                <ion-select-option *ngFor="let item of phonenumbertype" >{{item}}</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                          </ion-col>
+
+                         </ion-row>
+                    
+
+                        <ion-item *ngIf="formnewcontact==true"    >
+                          <div class="item-note ion-padding" slot="end">
+                            <ion-button color="success" size="medium" (click)="Savenewcontact()">Ajouter</ion-button>
+                          </div>
+                      </ion-item>
+
+
+                    <ion-row class="ion-padding" >
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                       NOM / PRENOM 
+                      </ion-col>
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                        EMAIL
+                      </ion-col>
+                      <ion-col sizeLg="2" sizeMd="2" sizeXs="12" > 
+                        STATUT
+                      </ion-col>
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                      </ion-col>
+                     </ion-row>
+
+                    <ion-row *ngFor="let item of contactList" class="ion-padding"  >
+                   
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                        <b>   {{item.lastName}} {{item.firstName}}  </b>
+                      </ion-col>
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                        <b>    {{item.email}} </b>
+                      </ion-col>
+
+                      <ion-col sizeLg="2" sizeMd="2" sizeXs="12" >          
+                       
+                        <ion-button  [hidden]="item.status==0"  size="small" shape="round" color="success">  Valide </ion-button>
+                        <ion-button  [hidden]="item.status==1" size="small" shape="round" color="danger"> Non valide </ion-button>
+                      </ion-col>
+
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                      <ion-button  *ngIf="!formaddphonetocontact && !formeditcontact" ion-button outline small color="light" (click)="addphonetocontact($event, item)">+<ion-icon name="call"></ion-icon></ion-button>
+                      <ion-button  *ngIf="!formeditcontact && !formaddphonetocontact" ion-button outline small color="light" (click)="editcontact($event, item)"><ion-icon small ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+                      <ion-button  *ngIf="formeditcontact && editcontactId==item.contactId" ion-button outline small color="danger" (click)="editformcontact()"><ion-icon ios="ios-close" md="md-close"></ion-icon></ion-button>
+                      <ion-button  *ngIf="formaddphonetocontact && addphonecontactId==item.contactId" ion-button outline small color="danger" (click)="addphonecontact()"><ion-icon ios="ios-close" md="md-close"></ion-icon></ion-button>
+                  
+                    </ion-col>
+
+
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngIf="formeditcontact==true && editcontactId==item.contactId" > 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Nom</ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="lastnamecontactedit" >  </ion-input>
+                          </ion-item>
+                          </ion-label> 
+                      </ion-col>
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngIf="formeditcontact==true && editcontactId==item.contactId" > 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Prénom</ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="firstnamecontactedit">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-col>
+
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngIf="formeditcontact==true && editcontactId==item.contactId"> 
+                        <ion-button  *ngIf="statuscontactedit==0" ion-button outline small color="light" (click)="activecontact($event, item)"> Activer </ion-button>
+                        <ion-button  *ngIf="statuscontactedit==1" ion-button outline small color="light" (click)="desactivecontact($event, item)"> Désactiver </ion-button>
+                      </ion-col>
+
+
+                      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" *ngIf="formeditcontact==true && editcontactId==item.contactId" > 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">E-mail</ion-label>
+                            <ion-input inputmode="email"[(ngModel)]="emailcontactedit">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-col>
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngIf="formeditcontact==true && editcontactId==item.contactId" > 
+                        <ion-button color="success" size="medium" (click)="Updatecontact($event, item)">Enregistrer</ion-button>
+                      </ion-col>
+        
+
+                    <ion-row *ngIf="formaddphonetocontact==true && addphonecontactId==item.contactId">
+                     
+                      <ion-col sizeLg="2" sizeMd="2" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Indicatif </ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="addindicatif" >  </ion-input>
+                        </ion-item>
+                      </ion-col>
+     
+                      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Télephone</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="addphone">  </ion-input>
+                        </ion-item>
+                      </ion-col>
+
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12"  > 
+                        <ion-item class="roundedInput">
+                          <ion-label position="stacked">Type</ion-label>
+                          <ion-select multiple="false" [(ngModel)]="addtypephone" (ionChange)="onChangeTypePhone($event)">
+                            <ion-select-option *ngFor="let item of phonenumbertype" >{{item}}</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-col>
+
+                      <ion-col sizeLg="3" sizeMd="3" sizeXs="12"  > 
+                        <ion-button color="success" size="medium"  (click)="savePhone($event, item)">Enregistrer <ion-icon name="call"></ion-icon></ion-button>
+                   
+                      </ion-col>
+                
+                    </ion-row>
+
+                      <ion-col sizeLg="9" sizeMd="9" sizeXs="12"  *ngFor="let itemphone of item.phoneList" > 
+                        <ion-button   ion-button outline small color="light" (click)="removePhone($event, itemphone)">  <ion-icon ios="ios-trash" md="md-trash" ></ion-icon > </ion-button>  Télephone : ({{itemphone.indicative}})  {{itemphone.phoneNumber}}  ( {{itemphone.numberType}} ) 
+                        </ion-col>
+                        <ion-col sizeLg="3" sizeMd="3" sizeXs="12"  *ngFor="let itemphone of item.phoneList" > 
+                      </ion-col>
+    
+                      </ion-row>
+                        <ion-item  >
+                          <div class="item-note ion-padding" slot="end">
+                            <ion-button color="danger" size="medium" (click)="editpage()" >Annuler </ion-button>
+                            <ion-button color="success" size="medium" (click)="doSaveProfil()">Enregistrer</ion-button>
+                          </div>
+                      </ion-item>
+
+                    </div>
+              </ng-container>
+            </ion-col>
+        </ion-row>
+
+       
+      </ion-list>
+
+        <ion-list lines="none"  *ngIf="edit==false">
+          <ion-row >
+            <ion-col sizeLg="3" sizeMd="3" sizeXs="12" >
+            
+   
+              </ion-col>   
+
+              <ion-col sizeLg="7" sizeMd="7" sizeXs="12" >    
+              <ion-item  >
+                <div class="item-note" slot="end">
+                  <ion-button ion-button item-end small color="primary" (click)="editpage()"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+                </div>
+              </ion-item>
+
+              <ion-segment  (ionChange)="segmentChanged($event)" [(ngModel)]="segType" scrollable value="info">
+                <ion-segment-button value="info" layout="icon-start">
+                  <ion-label> Client </ion-label>
+                  <ion-icon name="person"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+
+              
+              <ng-container [ngSwitch]="segType">
+                <div *ngSwitchCase="'info'">
+              
+    
+                  <ion-item  >
+                    <ion-label> 
+                      <b> Nom du partenaire </b> <br>
+                     </ion-label> 
+                    <ion-label> 
+                       <b>{{name}}</b> <br>
+                      </ion-label> 
+                    </ion-item>
+
+                    <ion-item  >
+                      <ion-label> 
+                        <b> Siren </b> <br>
+                       </ion-label> 
+                      <ion-label> 
+                         <b>{{siren}}</b> <br>
+                        </ion-label> 
+                      </ion-item>
+                    <ion-item  >
+                      <ion-label> 
+                       
+                       </ion-label> 
+                      <ion-label> 
+                        <ion-button  [hidden]="statuspartenaire==false"  size="small" shape="round" color="success"> Actif </ion-button>
+                        <ion-button  [hidden]="statuspartenaire==true" size="small" shape="round" color="danger"> Inactif </ion-button>
+                        </ion-label> 
+                      </ion-item>
+
+              <ion-item  >
+              <ion-label> 
+                 <b> Adresse</b> <br>
+                </ion-label> 
+                <ion-label> 
+                  {{number}}  {{street}} <br>
+                  {{zip}}  {{city}} <br>
+                  {{ addressComplement}}
+                </ion-label> 
+              </ion-item>
+ 
+                      <ion-item >
+                        <h5>  Contact(s)</h5>    
+                      </ion-item>
+
+
+                      <ion-row class="ion-padding" >
+                        <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                          NOM / PRENOM 
+                        </ion-col>
+                        <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                          EMAIL
+                        </ion-col>
+                        <ion-col sizeLg="2" sizeMd="2" sizeXs="12" > 
+                          STATUT
+                        </ion-col>
+                       </ion-row>
+  
+                      <ion-row *ngFor="let item of contactList" class="ion-padding"  >
+                     
+                        <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                          <b>   {{item.lastName}}  {{item.firstName}}  </b>
+                        </ion-col>
+
+                        <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                          <b>    {{item.email}} </b>
+                        </ion-col>
+                        <ion-col sizeLg="2" sizeMd="2" sizeXs="12" > 
+
+                          <ion-button  [hidden]="item.status==0"  size="small" shape="round" color="success">  Valide </ion-button>
+                          <ion-button  [hidden]="item.status==1" size="small" shape="round" color="danger"> Non valide </ion-button>
+                         
+                        </ion-col>
+                 
+                          <ion-col sizeLg="12" sizeMd="12" sizeXs="12"  *ngFor="let itemphone of item.phoneList" > 
+                            ({{itemphone.indicative}})  {{itemphone.phoneNumber}}  ( {{itemphone.numberType}} )
+                          </ion-col>
+                        
+                         </ion-row>
+                    </div>
+
+              </ng-container>
+            </ion-col>
+        </ion-row>
+      </ion-list>
+  
+  <ion-row   class="divider-blue" >
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+      </ion-col>
+      <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+      <h2> {{name}} | client depuis le {{daycreatedAt | date: 'dd/MM/yyyy'}}  </h2>
+</ion-col>
+
+<ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+</ion-col>
+</ion-row>
+
+</ion-col>
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+</ion-col>
+   
+</ion-row>
+
+</ion-content>

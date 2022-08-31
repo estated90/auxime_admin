@@ -1,0 +1,69 @@
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>  Ajouter </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  
+  <ion-card no-margin>
+ 
+  
+    <ion-grid fixed no-padding>
+      <ion-row>
+        <ion-col size="12" padding>
+
+          <ion-list  class="ion-margin-bottom">
+            <ion-list-header color="light">
+              <ion-label class="fw700"> Ajoutez une categorie</ion-label>
+            </ion-list-header>
+            <ion-item>
+     
+                <ion-label color="dark" position="stacked">Choisir le type</ion-label>
+                <ion-select [(ngModel)]="type" okText="Ok" cancelText="Annuler">
+                  <ion-select-option value=1 > Restaurants </ion-select-option>
+                  <ion-select-option value=2 > Lieux </ion-select-option>
+                  <ion-select-option value=3 > Hébergements </ion-select-option>
+                  <ion-select-option value=4 > Activités </ion-select-option>
+                </ion-select>
+              </ion-item>
+
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">Français</ion-label>
+                <ion-input inputmode="text" [(ngModel)]="tag_fr"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">Anglais</ion-label>
+                <ion-input inputmode="text" [(ngModel)]="tag_en"></ion-input>
+              </ion-item>
+
+            <ion-item>
+              <ion-label color="dark" position="stacked">Allemand</ion-label>
+              <ion-input inputmode="text" [(ngModel)]="tag_de"></ion-input>
+            </ion-item>
+          
+
+
+
+       
+          <ion-button size="full" expand="full"  (click)="doSave()" >Suivant</ion-button>
+
+
+        </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+   
+  </ion-card>
+  
+
+</ion-content>

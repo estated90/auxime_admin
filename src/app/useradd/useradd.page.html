@@ -1,0 +1,82 @@
+
+
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>  Ajouter</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="page">
+  
+    
+    <ion-card class="ion-no-margin">
+   
+    
+      <ion-grid fixed class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12" class="ion-padding">
+  
+            <ion-list  class="ion-margin-bottom">
+              <ion-list-header color="light">
+                <ion-label class="fw700">Coordonées</ion-label>
+              </ion-list-header>
+              <ion-item >
+                  <ion-label color="dark" position="stacked">Modifier le role</ion-label>
+                  <ion-select [(ngModel)]="role"   okText="Ok" cancelText="Annuler">
+                    <ion-select-option value="1"> client</ion-select-option>
+                    <ion-select-option value="2"> admin</ion-select-option>
+                  </ion-select>
+                </ion-item>
+  
+              <ion-item>
+                  <ion-label  color="dark" position="stacked"> Nom </ion-label>
+                <ion-input inputmode="text"  placeholder="Nom" [(ngModel)]="lastname"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label  color="dark" position="stacked">Prénom</ion-label>
+                  <ion-input  inputmode="text"  placeholder="Prénom" [(ngModel)]="firstname"></ion-input>
+                </ion-item>
+                 <ion-item>
+                    <ion-label  color="dark" position="stacked"> Email  </ion-label>
+                   <ion-input  inputmode="email"  placeholder="Email" [(ngModel)]="email"></ion-input>
+                 </ion-item>
+                 <ion-item>
+                  <ion-label  color="dark" position="stacked"> Adresse  </ion-label>
+                 <ion-input  inputmode="text"  placeholder="Adresse" [(ngModel)]="address"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label  color="dark" position="stacked"> CP  </ion-label>
+                 <ion-input  inputmode="text"  placeholder="CP" [(ngModel)]="cp"></ion-input>
+                </ion-item>
+                 <ion-item>
+                    <ion-label  color="dark" position="stacked"> Ville </ion-label>
+                   <ion-input  inputmode="text"  placeholder="Ville" [(ngModel)]="city"></ion-input>
+                 </ion-item>
+                
+                
+                 <ion-item>
+                    <ion-label  color="dark" position="stacked">Téléphone</ion-label>
+                   <ion-input inputmode="text"  placeholder="Téléphone" [(ngModel)]="phone"></ion-input>
+                 </ion-item>
+                
+                
+                 <p> L'utilisateur va reçevoir un mot de passe provisoire.</p>
+      
+  
+            <ion-button size="full" expand="full"  (click)="doSave()" >Enregister</ion-button>
+  
+  
+          </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+     
+    </ion-card>
+    
+  
+  </ion-content>

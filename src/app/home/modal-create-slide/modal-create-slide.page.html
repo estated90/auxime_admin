@@ -1,0 +1,52 @@
+<!-- my-modal.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ajouter un slider</ion-title>
+
+    <ion-button (click)="closeModal()">Annuler</ion-button>
+
+      <ion-row>
+      <ion-col text-center>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+ 
+  
+          <ion-list-header color="light">
+            <ion-label class="fw700">Ajouter un slide </ion-label>
+          </ion-list-header>
+        
+
+            <ion-item>
+            <ion-label  color="dark" position="stacked"> Titre </ion-label>
+            <ion-input inputmode="text"  placeholder="titre" [(ngModel)]="title"></ion-input>
+            </ion-item>
+            <ion-item>
+            <ion-label  color="dark" position="stacked"> Description </ion-label>
+            <ion-input  inputmode="text"  placeholder="description" [(ngModel)]="content"></ion-input>
+            </ion-item>
+
+
+
+            <ion-item>
+            <ion-buttons slot="start">
+              <ion-button >
+                <ion-icon slot="icon-only" name="attach"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+             <input type="file" (change)="onFileChange($event)" accept="image/*" />
+            </ion-item>
+        
+       
+            <ion-button size="full" expand="full"  (click)="doSave()" >Enregister</ion-button>
+
+
+
+
+
+</ion-content>

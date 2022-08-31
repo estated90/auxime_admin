@@ -1,0 +1,126 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+Catégories
+    </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" (click)="add()"> Ajouter   <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-list >
+    <div style="background-color: #E4E4E4">
+      <ion-row responsive-sm color="primary">
+        <ion-col col-12 col-md-2 color="primary">
+          Restaurants
+        </ion-col>  
+        </ion-row>
+      </div>
+ 
+    <ion-item-group *ngFor="let item of posts ; " >
+  
+      <ion-item  *ngIf="item.type === 1" >
+
+        <ion-label>{{item.id}}</ion-label>
+        <ion-label>{{item.tag_fr}}</ion-label>
+        <ion-label>{{item.tag_en}}</ion-label>
+        <ion-label>{{item.tag_de}}</ion-label>
+ 
+        <div class="item-note" slot="end">
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="primary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  
+    <div style="background-color: #E4E4E4">
+      <ion-row responsive-sm color="primary">
+        <ion-col col-12 col-md-2 color="primary">
+         Lieux
+        </ion-col>  
+        </ion-row>
+      </div>
+ 
+    <ion-item-group *ngFor="let item of posts ; " >
+  
+      <ion-item  *ngIf="item.type === 2" >
+
+        <ion-label>{{item.id}}</ion-label>
+        <ion-label>{{item.tag_fr}}</ion-label>
+        <ion-label>{{item.tag_en}}</ion-label>
+        <ion-label>{{item.tag_de}}</ion-label>
+ 
+        <div class="item-note" slot="end">
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="primary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  
+    <div style="background-color: #E4E4E4">
+      <ion-row responsive-sm color="primary">
+        <ion-col col-12 col-md-2 color="primary">
+          Hébergements
+        </ion-col>  
+        </ion-row>
+      </div>
+ 
+    <ion-item-group *ngFor="let item of posts ; " >
+  
+      <ion-item  *ngIf="item.type === 3" >
+
+        <ion-label>{{item.id}}</ion-label>
+        <ion-label>{{item.tag_fr}}</ion-label>
+        <ion-label>{{item.tag_en}}</ion-label>
+        <ion-label>{{item.tag_de}}</ion-label>
+ 
+        <div class="item-note" slot="end">
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="primary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  
+    <div style="background-color: #E4E4E4">
+      <ion-row responsive-sm color="primary">
+        <ion-col col-12 col-md-2 color="primary">
+          Activités
+        </ion-col>  
+        </ion-row>
+      </div>
+ 
+    <ion-item-group *ngFor="let item of posts ; " >
+  
+      <ion-item  *ngIf="item.type === 4" >
+
+        <ion-label>{{item.id}}</ion-label>
+        <ion-label>{{item.tag_fr}}</ion-label>
+        <ion-label>{{item.tag_en}}</ion-label>
+        <ion-label>{{item.tag_de}}</ion-label>
+ 
+        <div class="item-note" slot="end">
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="primary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  
+
+  </ion-list>
+
+
+
+
+
+</ion-content>
+

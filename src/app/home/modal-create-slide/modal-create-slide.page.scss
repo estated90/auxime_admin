@@ -1,0 +1,46 @@
+ion-toolbar {
+    --background: transparent !important;
+    --ion-color-base: transparent !important;
+    --border-color: transparent;
+    --background-color: transparent !important;
+  }
+
+
+  .roundedInput  {
+    --border-color: gray;
+    --border-radius: 5px;
+    --border-width: 2px;
+    --box-shadow: 2px gray;
+    --highlight-height: 0;
+    --background: #f8f9fa;
+   
+   }
+
+   ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+
+
+    .area {
+      width: 95%;
+      padding: 15px;
+      margin: 15px;
+      border: 1px solid #333;
+      background: rgba(0,0,0,0.7);
+  }
+  
+  #dropZone {
+      border: 2px dashed #bbb;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      padding: 50px;
+      text-align: center;
+      font: 21pt bold arial;
+      color: #bbb;
+  }
+  
+  .drop-file-over{
+    background: #333;
+  }
+  

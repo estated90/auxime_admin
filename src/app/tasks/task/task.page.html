@@ -1,0 +1,266 @@
+
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        <ion-button  style="margin-top: 4%" [routerLink]="['/create-client']"> Créer un client <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>  
+  </ion-toolbar>
+
+  <ion-row >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+        <ion-list lines="none" *ngIf="edit==false">
+
+
+          <ion-row class="ion-padding"  >
+            <ion-col col-12 col-md-6 padding>
+
+
+          <h5> <b>Tâche</b> </h5>
+          <ion-item *ngFor="let item of posts" >
+          <ion-label> <b> {{item.taskName}} </b></ion-label>  
+          <ion-label >  
+          <b>{{item.deadlineTask  | date: 'dd/MM/yyyy H:mm'}}</b>
+          </ion-label> 
+          <ion-label > 
+          <ion-button  slot="end" *ngIf="item.priority==1" size="small" shape="round" color="light"> Priorité 1 </ion-button>
+          <ion-button  slot="end" *ngIf="item.priority==2" size="small" shape="round" color="danger">  Priorité 2</ion-button>
+          <ion-button  slot="end" *ngIf="item.priority==3" size="small" shape="round" color="success">  Priorité 3</ion-button>
+          </ion-label> 
+      
+          <div class="item-note" slot="end">
+            <ion-button ion-button item-end small color="primary" (click)="editpage()"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          </div>
+        </ion-item>
+      
+      
+        <ion-item class="ion-text-wrap" *ngFor="let item of posts">
+          {{item.description}}
+        </ion-item>
+    
+       </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding"  >
+        <ion-col col-12 col-md-6 padding>
+            <ion-item color="light">
+              <h5> <b>Porté</b> </h5>
+            </ion-item>
+  
+           <ion-item *ngFor="let item of posts">
+            <ion-label position="stacked">Prénom Nom </ion-label>
+                {{item.porteFirstName}} {{item.partnerLastName}}
+            </ion-item>
+         
+            <ion-item color="light">
+              <h5> <b>Editeur</b> </h5>
+            </ion-item>
+    
+            <ion-item *ngFor="let item of posts">
+              <ion-label position="stacked">Prénom Nom </ion-label>
+              {{item.accountFirstName}} {{item.accountLastName}}
+            </ion-item>
+          </ion-col>
+    
+          <ion-col col-12 col-md-6 padding>
+            <ion-item color="light">
+              <h5> <b>Partenaire</b> </h5>
+            </ion-item>
+
+            <ion-item *ngFor="let item of posts">
+              <ion-label position="stacked">Dénomination </ion-label>
+              {{item.partnerDenomination}}
+            </ion-item>
+            <ion-item *ngFor="let item of posts">
+              <ion-label position="stacked">Prénom Nom </ion-label>
+              {{item.partnerFirstName}} {{item.partnerLastName}}
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding">
+      <ion-col col-12 col-md-12 padding>
+
+        <ion-item color="light">
+          <h5> <b>Types</b> </h5>
+        </ion-item>
+
+      <ion-item *ngFor="let item of events">
+        <ion-label>
+          <ion-label color="dark" position="stacked">
+            <ion-icon name="albums" slot="start"></ion-icon> {{item.eventName}}
+          </ion-label>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+    </ion-row>
+      </ion-list>
+
+
+      <ion-list lines="none" *ngIf="edit==true">
+
+        <ion-row >
+          <ion-col col-12 col-md-12 padding>
+        
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >   
+                <h5> <b>Tâche</b> </h5>
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item  class="roundedInput">
+                  <ion-label color="dark" position="stacked">Titre</ion-label>
+                  <ion-input inputmode="text" [(ngModel)]="title"></ion-input>
+                </ion-item>    
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput" >
+                  <ion-label color="dark" position="stacked">Description ( max 300 caractères )</ion-label>
+                  <ion-textarea maxlength="300" rows="4" inputmode="text" [(ngModel)]="content"></ion-textarea>
+                </ion-item>  
+              </ion-col>
+            </ion-row>
+
+
+        <ion-row  class="ion-padding"  >
+          <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+            <ion-item class="roundedInput" >
+              <ion-label position="stacked"> Type de tâche </ion-label>
+              <ion-select multiple="true" [(ngModel)]="type"  (ionChange)="onChangeType($event)">
+                <ion-select-option *ngFor="let item of poststypes" >{{item.eventName}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >  
+               <ion-item class="roundedInput">
+                <ion-label position="floating">Deadline</ion-label>
+                <ion-label *ngFor="let item of posts">  
+                  <b>{{item.deadlineTask  | date: 'dd/MM/yyyy H:mm'}}</b>
+                  </ion-label> 
+            
+               <ion-datetime style="display: none;" displayFormat="MM/DD/YYYY" [(ngModel)]="deadlineTask"></ion-datetime>
+              </ion-item>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label position="stacked">Priorité</ion-label>
+                  <ion-select multiple="false" [(ngModel)]="priority" [value]="priority">
+                    <ion-select-option value="1">Priorité 1</ion-select-option>
+                    <ion-select-option value="2">Priorité 2</ion-select-option>
+                    <ion-select-option value="3">Priorité 3</ion-select-option>
+                  </ion-select>
+                </ion-item> 
+              </ion-col>
+            </ion-row>
+         
+    
+            <ion-item  >
+              <div class="item-note ion-padding" slot="end">
+                <ion-button color="danger" size="medium" (click)="editpage()" >Annuler </ion-button>
+                <ion-button color="success" size="medium" (click)="doSave()">Enregistrer</ion-button>
+              </div>
+          </ion-item>
+    
+         
+    
+          </ion-col>
+        </ion-row>
+    
+        <ion-row class="ion-padding"  >
+          <ion-col col-12 col-md-6 padding>
+              <ion-item color="light">
+                <h5> <b>Porté</b> </h5>
+              </ion-item>
+    
+             <ion-item *ngFor="let item of posts">
+              <ion-label position="stacked">Prénom Nom </ion-label>
+                  {{item.porteFirstName}} {{item.partnerLastName}}
+              </ion-item>
+           
+              <ion-item color="light">
+                <h5> <b>Editeur</b> </h5>
+              </ion-item>
+      
+              <ion-item *ngFor="let item of posts">
+                <ion-label position="stacked">Prénom Nom </ion-label>
+                {{item.accountFirstName}} {{item.accountLastName}}
+              </ion-item>
+            </ion-col>
+      
+            <ion-col col-12 col-md-6 padding>
+              <ion-item color="light">
+                <h5> <b>Partenaire</b> </h5>
+              </ion-item>
+
+              <ion-item *ngFor="let item of posts">
+                <ion-label position="stacked">Dénomination </ion-label>
+                {{item.partnerDenomination}}
+              </ion-item>
+              <ion-item *ngFor="let item of posts">
+                <ion-label position="stacked">Prénom Nom </ion-label>
+                {{item.partnerFirstName}} {{item.partnerLastName}}
+              </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-padding">
+        <ion-col col-12 col-md-12 padding>
+
+          <ion-item color="light">
+            <h5> <b>Types</b> </h5>
+          </ion-item>
+
+        <ion-item *ngFor="let item of events">
+          <ion-label>
+            <ion-label color="dark" position="stacked">
+              <ion-icon name="albums" slot="start"></ion-icon> {{item.eventName}}
+            </ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      </ion-row>
+
+
+      </ion-list>
+      </ion-col>
+  
+
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+
+
+</ion-col>
+   
+  
+</ion-row>
+
+</ion-content>
+
+
+
+
+
+
+
+  

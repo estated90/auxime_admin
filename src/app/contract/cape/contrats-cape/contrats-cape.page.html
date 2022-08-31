@@ -1,0 +1,126 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title> </ion-title>
+
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        <ion-button  style="margin-top: 4%" [routerLink]="['/create-cape']"> Créer un contrat <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+        </ion-item>
+      </div>
+      </ion-buttons>
+
+
+
+  </ion-toolbar>
+
+  <ion-list >
+    <ion-segment  (ionChange)="segmentChanged($event)" [(ngModel)]="segType" scrollable value="AUXIME"  >
+      <ion-segment-button value="AUXIME" layout="icon-start" >
+        <ion-label>AUXIME</ion-label>
+        <ion-icon name="albums-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="COELIS" layout="icon-start">
+        <ion-label>Coelis</ion-label>
+        <ion-icon name="albums-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="ENVOLYS" layout="icon-start">
+        <ion-label>Envolys</ion-label>
+        <ion-icon name="albums-outline"></ion-icon>
+      </ion-segment-button>
+
+    </ion-segment>
+
+      <ion-row >
+      <ion-col col-md-12 color="primary">
+          <ion-searchbar type="text"  placeholder="Contrats"  debounce="200" (ionChange)="onChangeWord($event)"></ion-searchbar> 
+      </ion-col>
+      </ion-row>
+
+      <ion-row responsive-sm color="primary">
+ 
+        <ion-col col-12 col-md-2 color="primary">
+          <ion-item>
+            <ion-label position="stacked">Date de début </ion-label>
+
+            <input type="date" displayFormat="YYYY-MM-DD"  [(ngModel)]="startdate" placeholder="Select Date"  (change)="onChangeDate()">
+           
+          </ion-item>
+        </ion-col>
+  
+   
+        <ion-col col-12 col-md-2 color="primary">
+          <ion-item (ionChange)="onChangeDate()" >
+            <ion-label position="stacked">Date de fin </ion-label>
+            <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="enddate"placeholder="Select Date" (change)="onChangeDate()" >
+          </ion-item>
+        </ion-col>
+      
+          <ion-col col-12 col-md-3 >
+            <ion-item>
+              <ion-label position="stacked">Etat</ion-label>
+              <ion-select multiple="false" [(ngModel)]="contractStatus" value="{{contractStatus}}"  (ionChange)="onChangeDate()">
+                  <ion-select-option value="">Tous</ion-select-option>
+                  <ion-select-option value="DRAFT">Brouillon</ion-select-option>
+                  <ion-select-option value="PENDING_VALIDATION">En attente de validation</ion-select-option>
+                  <ion-select-option value="VALIDATED">Validé</ion-select-option>
+                  <ion-select-option value="REFUSED">Refusé</ion-select-option>
+                  <ion-select-option value="REFUSED">Demande de modification</ion-select-option>
+                </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    </ion-list>
+        <ion-item-divider color="light">
+          <ion-label>
+            Nombre de résultats : <b>{{total}} </b> 
+          </ion-label>
+          <ion-label  slot="end">
+            Page : <b>{{currentpage}} / {{last_page}}</b>
+          </ion-label>
+        </ion-item-divider>
+      <ion-list>
+
+ 
+      <ion-item *ngFor="let item of posts"  >
+        <div class="item-note" slot="start" >
+
+          <ion-button ion-button outline item-end small color="success"  (click)="edit($event, item)" class="hovertext" *ngIf="item.contractState=='ACTIVE'" > </ion-button>
+          <ion-button ion-button outline item-end small color="danger"  (click)="edit($event, item)" class="hovertext" *ngIf="item.contractState=='INACTIVE'" > </ion-button>
+          <div class="innerText" >
+            <p> {{item.contractState}}</p>
+           </div>
+        </div>
+        <ion-label (click)="edit($event, item)" >  
+        {{item.contractTitle}}
+      </ion-label> 
+        <ion-label (click)="edit($event, item)">  
+        {{item.contractStatus}}
+      </ion-label> 
+     
+
+        <ion-label (click)="edit($event, item)">  
+        {{item.structureContract}}
+      </ion-label> 
+      <div class="item-note" slot="end">
+        <ion-button ion-button outline item-end small color="success" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+      </div>
+
+      </ion-item>
+  
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement…">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+
+</ion-list>
+</ion-content>
+

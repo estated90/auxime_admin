@@ -1,0 +1,289 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>   </ion-title>
+      <ion-buttons slot="end">
+        <div  slot="end">
+          <ion-item  class="border-header" color="grey">
+          <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+          <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+          </ion-item>
+        </div>
+    </ion-buttons>
+    </ion-toolbar>
+  
+
+    <ion-row >
+        <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+        <ion-list lines="none" >
+  
+          <ion-row >
+            <ion-col col-12 col-md-12 padding>
+              <ion-item>
+                <h5> <b>Créer un contrat</b> </h5>
+            </ion-item>
+            <ion-item>
+              <ion-label> 
+                <b>   Choisir un titre de contrat *</b>
+                </ion-label> 
+                <ion-label> 
+                  <ion-item class="roundedInput">
+                      <select id="standard-select"   [(ngModel)]="name" >
+                        <option *ngFor="let item of contractsName" value="{{item}}">{{item}}</option>
+                      </select>
+                    </ion-item>
+            </ion-label> 
+          </ion-item>
+
+<ion-item>
+  <ion-label> 
+    <b>  Entreprise *</b>
+    </ion-label> 
+    <ion-label> 
+      <ion-item class="roundedInput">
+          <select id="standard-select"   [(ngModel)]="compagny" >
+            <option  value="AUXIME">AUXIME</option>
+            <option  value="COELIS">COELIS</option>
+            <option  value="ENVOYLS">ENVOYLS</option>
+          </select>
+        </ion-item>
+</ion-label> 
+</ion-item>
+
+
+            <ion-item  >
+              <ion-label><b> Date de début *</b></ion-label> 
+                <ion-label> 
+                  <ion-item class="roundedInput">
+                    <ion-label position="stacked"> Date de début</ion-label>
+                    <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="startDate" placeholder="Select Date" >
+                  </ion-item>
+            </ion-label> 
+          </ion-item>
+
+
+          <ion-item  >
+            <ion-label><b> Date de fin *</b></ion-label> 
+              <ion-label> 
+                <ion-item class="roundedInput">
+                  <ion-label position="stacked"> Date de fin  </ion-label>
+                  <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="endDate" placeholder="Select Date" >
+
+
+           </ion-item>
+          </ion-label> 
+        </ion-item>
+
+        <ion-item  >
+          <ion-label> 
+            <b>  Date du contrat *</b>
+            </ion-label> 
+            <ion-label> 
+              <ion-item class="roundedInput">
+          <ion-label position="stacked">  Date du contrat  </ion-label>
+          <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="contractDate" placeholder="Select Date" >
+
+         </ion-item>
+        </ion-label> 
+      </ion-item>
+          <ion-item>
+            <ion-label> 
+              <b>  Choisir un client *</b>
+              </ion-label> 
+              <ion-label> 
+                <ion-item class="roundedInput">
+                    <select id="standard-select" [(ngModel)]="idclient"  >
+                      <option *ngFor="let item of clients"  value="{{item.thirdPartyId}}">{{item.denomination}} </option>
+                    </select>
+                  </ion-item>
+          </ion-label> 
+        </ion-item>
+
+        <ion-item>
+          <ion-label> 
+            <b>  Choisir un porté *</b>
+            </ion-label> 
+
+            <ion-label  *ngIf="idporte!==''"> 
+            <ion-item class="roundedInput">
+             {{firstname}} {{lastname}}
+             </ion-item>
+             </ion-label> 
+
+             <ion-label  *ngIf="idporte==''"> 
+            <ion-item class="roundedInput">
+             <ion-button color="success" size="light" (click)="openModal()"> Choisir un porté </ion-button>
+            </ion-item>
+            </ion-label> 
+
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label> 
+          <b>    Prix  gobal *</b>
+          </ion-label> 
+          <ion-label> 
+            <ion-item class="roundedInput">
+              <ion-input inputmode="text" placeholder="Global" [(ngModel)]="globalAmount"></ion-input>
+              </ion-item>
+      </ion-label> 
+    </ion-item>
+
+
+
+
+            <ion-item  >
+              <ion-label><b> Date de début *</b></ion-label> 
+                <ion-label> 
+                  <ion-item class="roundedInput">
+                    <ion-label position="stacked"> Date de début</ion-label>
+                    <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="startDate" placeholder="Select Date" >
+                  </ion-item>
+            </ion-label> 
+          </ion-item>
+
+
+          <ion-item  >
+            <ion-label><b> Date de fin *</b></ion-label> 
+              <ion-label> 
+                <ion-item class="roundedInput">
+                  <ion-label position="stacked"> Date de fin  </ion-label>
+                  <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="endDate" placeholder="Select Date" >
+
+
+           </ion-item>
+          </ion-label> 
+        </ion-item>
+
+
+
+
+        <ion-item  >
+          <ion-label> 
+            <b>  Date du contrat *</b>
+            </ion-label> 
+            <ion-label> 
+              <ion-item class="roundedInput">
+          <ion-label position="stacked">  Date du contrat  </ion-label>
+          <input type="date" displayFormat="YYYY-MM-DD" [(ngModel)]="contractDate" placeholder="Select Date" >
+
+         </ion-item>
+        </ion-label> 
+      </ion-item>
+
+
+          <ion-item>
+            <ion-label> 
+              <b>  Choisir un client *</b>
+              </ion-label> 
+              <ion-label> 
+                <ion-item class="roundedInput">
+                    <select id="standard-select" [(ngModel)]="idclient"  >
+                      <option *ngFor="let item of clients"  value="{{item.thirdPartyId}}"   >{{item.denomination}} </option>
+
+                    </select>
+                  </ion-item>
+          </ion-label> 
+        </ion-item>
+
+
+
+
+        <ion-item>
+          <ion-label> 
+            <b>  Choisir un porté *</b>
+            </ion-label> 
+            <ion-label> 
+              <ion-item class="roundedInput">
+                  <select id="standard-select" [(ngModel)]="idporte"  >
+                    <option *ngFor="let item of hosts"  value="{{item.hostId}}"   >{{item.firstName}} {{item.lastName}}</option>
+                  </select>
+                </ion-item>
+        </ion-label> 
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label> 
+          <b>    Prix  gobal *</b>
+          </ion-label> 
+          <ion-label> 
+            <ion-item class="roundedInput">
+              <ion-input inputmode="text" placeholder="Global" [(ngModel)]="globalAmount"></ion-input>
+              </ion-item>
+      </ion-label> 
+    </ion-item>
+
+
+
+
+    <ion-item>
+      <ion-label> 
+        <b>    Prix  mensuel *</b>
+        </ion-label> 
+        <ion-label> 
+          <ion-item class="roundedInput">
+            <ion-input inputmode="text"  [(ngModel)]="monthlyAmount"></ion-input>
+            </ion-item>
+    </ion-label> 
+  </ion-item>
+
+
+
+  <ion-item>
+    <ion-label> 
+      <b>   Durée *</b>
+      </ion-label> 
+      <ion-label> 
+        <ion-item class="roundedInput">
+          <ion-input inputmode="text" [(ngModel)]="duration"></ion-input>
+          </ion-item>
+  </ion-label> 
+</ion-item>
+
+  <ion-item>
+    <ion-label> 
+      <b>   Choisir l'unité *</b>
+      </ion-label> 
+    <ion-label> 
+      <ion-item class="roundedInput">
+          <select id="standard-select"   [(ngModel)]="monthlyAmountunity" >
+            <option *ngFor="let item of contractsDurations" value="{{item}}"   >{{item}}</option>
+          </select>
+        </ion-item>
+       </ion-label> 
+</ion-item>
+
+
+
+
+
+ <ion-item  >
+  <div class="item-note ion-padding" slot="end">
+  <ion-button color="danger" size="medium" (click)="doCancel()" >Annuler </ion-button>
+  <ion-button color="success" size="medium" (click)="doSave()">Enregistrer</ion-button>
+  </div>
+  </ion-item>
+      
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+      </ion-col>
+  
+
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+
+
+</ion-col>
+   
+  
+</ion-row>
+
+</ion-content>
+
+

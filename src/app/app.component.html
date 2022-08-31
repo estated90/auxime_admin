@@ -1,0 +1,708 @@
+<ion-app>
+  <ion-split-pane >
+
+    <ion-menu type="overlay" menuId="menu1" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false" >
+
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+            </ion-item>
+
+    
+        
+
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+            </ion-item>
+
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+            </ion-item>
+
+
+      
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/user-contrats']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+          </ion-list>  
+        </ion-menu-toggle>
+
+
+      </ion-content>
+
+
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+    <ion-menu type="overlay" menuId="menu3" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+
+   
+
+
+    <ion-menu type="overlay" menuId="menu3" >
+
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+ 
+
+    <ion-menu type="overlay" menuId="menu5" >
+
+      <ion-header>
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      </ion-header>
+
+
+
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+             </ion-item>
+
+
+       
+          </ion-list>  
+        </ion-menu-toggle>
+
+
+
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+
+    <ion-menu type="overlay" menuId="menu7" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+   
+
+    <ion-menu type="overlay" menuId="menu12" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+
+    <ion-menu type="overlay" menuId="menu15" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+    
+    
+
+    <ion-menu type="overlay" menuId="menu15" >
+      <ion-header>
+
+       <img class="circular" src="./assets/logo.png" width="200px" style="padding: 5%;"  > 
+        <br>
+      
+      </ion-header>
+      <ion-content>
+        <ion-menu-toggle auto-hide="false"  >
+          <ion-list lines="none">
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/edit-profile']" routerLinkActive='active-item'   #id="routerLinkActive" (click)="reload()">
+              <ion-label>{{firstname}} {{lastname}} </ion-label>
+            </ion-item>
+
+
+            <ion-item  [routerDirection]="'root'" [routerLink]="['/home']" routerLinkActive='active-item'  (click)="isHome === true ? isHome = false : isHome = true" #idhome="routerLinkActive" (click)="reload()" >
+              <img  src="./assets/icon/picto_accueil_1.png" *ngIf="!idhome.isActive" slot="start">
+              <img  src="./assets/icon/picto_accueil_2.png" *ngIf="idhome.isActive" slot="start">
+              <ion-label > Accueil </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/calendar']" (click)="isCalendar === true ? isCalendar = false : isCalendar = true" routerLinkActive='active-item'   #idcalendar="routerLinkActive"  >
+              <img  src="./assets/icon/picto_formations_1.png" *ngIf="!idcalendar.isActive" slot="start">
+              <img  src="./assets/icon/picto_formations_2.png" *ngIf="idcalendar.isActive" slot="start">
+              <ion-label > Webinaire & collectif </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isCalendar" [routerLink]="['/formations']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Formations </ion-label>
+            </ion-item>
+
+            <ion-item [hidden]="!isCalendar" [routerLink]="['/hotes']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Hôtes </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/tasks']" (click)="isTasks === true ? isTasks = false : isTasks = true" routerLinkActive='active-item'   #idtasks="routerLinkActive"  >
+              <img  src="./assets/icon/picto_tache_1.png" *ngIf="!idtasks.isActive" slot="start">
+              <img  src="./assets/icon/picto_tache_2.png" *ngIf="idtasks.isActive" slot="start">
+              <ion-label > Tâches </ion-label>
+              <ion-icon slot="end" [name]="isCalendar ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+            <ion-item  [hidden]="!isTasks" [routerLink]="['/events']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Types de tâches </ion-label>
+            </ion-item>
+
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/scopes']" (click)="isScopes === true ? isScopes = false : isScopes = true" routerLinkActive='active-item'   #idscopes="routerLinkActive"  >
+              <img  src="./assets/icon/picto_scope_1.png" *ngIf="!idscopes.isActive" slot="start">
+              <img  src="./assets/icon/picto_scope_2.png" *ngIf="idscopes.isActive" slot="start">
+              <ion-label > Mon scope </ion-label>       
+            </ion-item>
+            
+            <ion-item  lines="none" [routerDirection]="'root'" [routerLink]="['/contrats-cape']" (click)="isContrats === true ? isContrats = false : isContrats = true" routerLinkActive='active-item'   #idcontracts="routerLinkActive"  >
+              <img  src="./assets/icon/picto_contrats_1.png" *ngIf="!idcontracts.isActive" slot="start">
+              <img  src="./assets/icon/picto_contrats_2.png" *ngIf="idcontracts.isActive" slot="start">
+              <ion-label > Contrats </ion-label>
+            </ion-item>
+         
+
+            <ion-item  lines="none" [routerDirection]="'forward'"     [routerLink]="['/partenaires']" (click)="isPartenaires === true ? isPartenaires = false : isPartenaires = true" routerLinkActive='active-item'   #idpartenaires="routerLinkActive"  >
+              <img  src="./assets/icon/picto_partenaires_1.png" *ngIf="!idpartenaires.isActive" slot="start">
+              <img  src="./assets/icon/picto_partenaires_2.png" *ngIf="idpartenaires.isActive" slot="start">
+              <ion-label > Partenaires </ion-label>
+
+              <ion-icon slot="end" [name]="isPartenaires ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item>
+
+            <ion-item  [hidden]="!isPartenaires" [routerLink]="['/clients']" routerLinkActive='active-item'   #id="routerLinkActive" >
+              <ion-label > Clients</ion-label>
+            </ion-item>
+          </ion-list>  
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer-bar >
+        <ion-item  (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+    
+          <ion-label>
+            Déconnexion    
+          </ion-label>
+        </ion-item>
+    </ion-footer-bar>
+    </ion-menu>
+
+    <ion-router-outlet main>
+    </ion-router-outlet>
+  </ion-split-pane>
+ 
+</ion-app>

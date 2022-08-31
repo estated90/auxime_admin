@@ -1,0 +1,183 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  /** primary **/
+  --ion-color-primary: #00BCD4;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: 00BCD4;
+  --ion-color-primary-tint: #00BCD4;
+
+  /** secondary **/
+  --ion-color-secondary: #00BCD4;
+  --ion-color-secondary-rgb: 12, 209, 232;
+  --ion-color-secondary-contrast: #ececec;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #6e80f8;
+  --ion-color-secondary-tint: #00BCD4;
+
+  /** tertiary **/
+  --ion-color-tertiary: #E52364;
+  --ion-color-tertiary-rgb: 112, 68, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #E52364;
+  --ion-color-tertiary-tint: #E52364;
+
+  /** success **/
+  --ion-color-success: #009688;
+  --ion-color-success-rgb: 16, 220, 96;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #009688;
+  --ion-color-success-tint: #009688;
+
+  /** warning **/
+  --ion-color-warning: #ffce00;
+  --ion-color-warning-rgb: 255, 206, 0;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade: #e0b500;
+  --ion-color-warning-tint: #ffd31a;
+
+  /** danger **/
+  --ion-color-danger: #BF2E1A;
+  --ion-color-danger-rgb: 245, 61, 61;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #BF2E1A;
+  --ion-color-danger-tint: #BF2E1A;
+
+  /** dark **/
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 34, 34;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  /** medium **/
+  --ion-color-medium: #989aa2;
+  --ion-color-medium-rgb: 152, 154, 162;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #86888f;
+  --ion-color-medium-tint: #a2a4ab;
+
+  /** light **/
+  --ion-color-light: #EEEEEE;
+  --ion-color-light-rgb: 244, 244, 244;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #EEEEEE;
+  --ion-color-light-tint: #EEEEEE;
+
+
+
+
+    /** light **/
+    --ion-color-grey: #b1b1b1;
+  
+  
+
+  --ion-grid-width-xs: 100%;
+  --ion-grid-width-sm: 540px;
+  --ion-grid-width-md: 720px;
+  --ion-grid-width-lg: 960px;
+  --ion-grid-width-xl: 1140px;
+  --ion-content{
+    background-color: #000000;
+  }
+}
+
+
+.list-md {
+  border-radius: 10px;
+  box-shadow:1px 1px 2px 2px rgb(215, 215, 215);
+}
+
+
+
+ion-col{
+ion-searchbar{
+  border-radius: 10px;
+}
+}
+
+
+h1,h2,h3,h4,h6,p {
+  font-family: 'Arial', sans-serif !important;
+  color:#4F5156 !important;
+  }
+
+  h3 {
+    color:#00BCD4;
+    }
+  
+    h4 {
+      color:#BF2E1A
+      }
+    
+      h5 {
+        color:#00BCD4;
+        }
+      
+
+
+  h6 {
+    color:#E52364;
+    }
+  
+  ion-toolbar {
+    --background: transparent !important;
+    --ion-color-base: transparent !important;
+    --border-color: transparent;
+    --background-color: transparent !important;
+  }
+
+
+  .roundedInput  {
+    --border-color: gray;
+    --border-radius: 5px;
+    --border-width: 2px;
+    --box-shadow: 2px gray;
+    --highlight-height: 0;
+    --background: #f8f9fa;
+   
+   }
+
+   ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+  
+
+
+    .innerText {
+      display: none;
+    }
+
+    .hovertext:hover + .innerText {
+      display: block;
+      visibility: visible;
+    }
+
+    
+   .innerText {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgb(180, 180, 180);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 6px;
+    padding: 1px 0;
+    text-transform: lowercase;
+    position: absolute;
+    z-index: 1;
+    left: 30px;
+    bottom: 3px;
+    visibility: visible;
+    }

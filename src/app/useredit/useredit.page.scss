@@ -1,0 +1,71 @@
+
+
+:host {     
+
+
+    .circular {
+        width: 40px;
+        height: 40px;
+        position: inherit;
+        border-radius: 50%;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        background-size: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        // margin-bottom: 50px;
+      }
+    [contenteditable] {
+        -webkit-user-select: text;
+        user-select: text;
+        height:500px;
+    }
+  
+
+    .ql-editor{
+        min-height:200px;
+        color:black;
+    }
+
+    .circular {
+        width: 150px;
+        height: 150px;
+        position: inherit;
+        border-radius: 50%;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        background-size: 100%;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        // margin-bottom: 50px;
+      }
+      .page{
+        --background: var(  --ion-color-light-tint);
+        }
+
+        .header-card{
+
+            float:right;
+        }
+
+
+        .ion-card{
+            color:black;
+        }
+
+        .img-icon{
+            width:24px;
+            height:24px;
+        }
+    
+
+        a{
+
+            color:red;
+        }
+  }
+

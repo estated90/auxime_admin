@@ -1,0 +1,122 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>
+
+
+  </ion-toolbar>
+
+  <ion-row >
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+      <ion-list >
+
+        <ion-row >
+          <ion-col col-12 col-md-12 padding>
+        
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >   
+                <h5> <b>Créer un client</b> </h5>
+              </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Nom du client * </ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="name">  </ion-input>
+                </ion-item>
+              </ion-col>
+             </ion-row>
+
+
+             <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Siren * </ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="siren">  </ion-input>
+                </ion-item>
+              </ion-col>
+             </ion-row>
+
+
+             <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >   
+                <h5> <b> Adresse </b> </h5>
+              </ion-col>
+            </ion-row>
+            
+              <ion-row  class="ion-padding"  >
+                <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked">Numero</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="number" >  </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col sizeLg="8" sizeMd="8" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked">Adresse</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="street">  </ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+  
+              <ion-row  class="ion-padding"  >
+                <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked">CP</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="zip" >  </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col sizeLg="7" sizeMd="7" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked">Ville</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="city">  </ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+  
+
+               <ion-row  class="ion-padding"  >
+                <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked"> Adresse complement</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="addressComplement">  </ion-input>
+                  </ion-item>
+                </ion-col>
+               </ion-row>
+
+    
+                <ion-item  >
+                    <div class="item-note ion-padding" slot="end">
+                      <ion-button color="danger" size="medium" (click)="cancel()" >Annuler </ion-button>
+                      <ion-button color="success" size="medium" (click)="doSaveProfil()">Suivant</ion-button>
+                    </div>
+                </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+      </ion-col>
+  
+
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+
+
+</ion-col>
+   
+  
+</ion-row>
+
+</ion-content>

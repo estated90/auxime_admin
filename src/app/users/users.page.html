@@ -1,0 +1,118 @@
+<ion-header >
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+      Utilisateurs
+      </ion-title>
+      <ion-buttons slot="end">
+          <ion-button  style="margin-top: 4%" (click)="add()"> Ajouter  <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+
+  <div style="background-color: #E4E4E4">
+    <ion-row responsive-sm color="primary">
+ 
+        <ion-col col-12 col-md-2 color="primary">
+            <ion-searchbar type="text"  placeholder="Nom ,Prénom" debounce="200"  [(ngModel)]="filter" (ionChange)="onChangeWord($event)"></ion-searchbar>
+        </ion-col>
+
+        <ion-col col-12 col-md-3 style="padding-top:10px;">
+            <ion-button color="primary" (click)="reset()"> Réinitialiser <ion-icon ios="ios-refresh" md="md-refresh"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col col-12 col-md-3 style="padding-top:10px;">
+            <ion-button size="full" color="primary" >   Nombre de résultats : <b>{{total}}</b></ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+   
+    <ion-list class="hidden-xs-small">
+      <ion-item *ngFor="let item of posts" >
+        <ion-label > 
+          <ion-label color="dark" position="stacked"> <ion-icon name="albums"  slot="start"></ion-icon> {{item.id}} </ion-label>
+          <div style="padding-top:5px;">  {{item.fistname}}  {{item.lastname}}</div>
+        </ion-label> 
+
+ 
+        <ion-label > 
+          <div style="padding-top:5px;">  {{item.role}}</div>
+        </ion-label> 
+
+
+        <div class="item-note" slot="end">
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="secondary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-list class="hidden-xs-large">
+      <ion-item *ngFor="let item of posts" >
+        <ion-label > 
+          <ion-label color="dark" position="stacked"> <ion-icon name="albums"  slot="start"></ion-icon> {{item.id}} </ion-label>
+          <div style="padding-top:5px;">  {{item.firstname}} {{item.lastname}}</div>
+        </ion-label> 
+
+  
+
+
+        <ion-label > 
+        <ion-button  *ngIf="item.email_verified_at==null" shape="round" color="danger" > Inactif </ion-button>
+        </ion-label> 
+
+
+
+
+        <ion-label *ngIf="item.email_verified_at!==null" shape="round" color="success" > 
+          <ion-button shape="round" color="success" > Actif </ion-button>
+          </ion-label> 
+
+
+
+        <ion-label *ngIf="item.email_verified_at==null"> 
+        <ion-button small color="secondary" (click)="verif($event, item)">
+          Valider 
+        </ion-button>
+      </ion-label> 
+
+
+      <ion-label *ngIf="item.role==1"> 
+        <ion-button shape="round" color="light" > client </ion-button>
+        </ion-label> 
+
+
+      <ion-label *ngIf="item.role==2"> 
+        <ion-button shape="round" color="light" > admin </ion-button>
+        </ion-label> 
+
+
+  
+        <div class="item-note" slot="end">     
+          <div style="padding-top:5px;">{{item.created_at| date: 'dd/MM/yyyy'}}</div>
+      
+          <ion-button ion-button item-end small color="primary" (click)="edit($event, item)"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+          <ion-button ion-button outline item-end small color="secondary" (click)="delete($event, item)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></ion-button>
+        </div>
+
+      </ion-item>
+    </ion-list>
+  <ion-item >
+
+    
+      <div class="item-note" slot="start">
+          <ion-button ion-button small color="primary"  (click)="backward()"> <ion-icon ios="ios-skip-backward" md="md-skip-backward"></ion-icon></ion-button>
+          <ion-button ion-button small color="primary" (click)="prev()"> Precédent</ion-button>
+          <ion-button ion-button small color="primary" (click)="next()"> Suivant</ion-button>
+          <ion-button ion-button small color="primary" (click)="forward()"> <ion-icon small name="skip-forward"></ion-icon> </ion-button>
+      </div>
+      <div class="item-note" slot="end">
+          Page : <b>{{currentpage}} / {{last_page}}</b>
+      </div>
+  </ion-item>
+
+</ion-content>
+

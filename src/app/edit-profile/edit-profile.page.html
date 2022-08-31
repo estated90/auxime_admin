@@ -1,0 +1,537 @@
+<ion-content responsive-sm color="light" class="ion-padding">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>   </ion-title>
+    <ion-buttons slot="end">
+      <div  slot="end">
+        <ion-item  class="border-header" color="grey">
+        <ion-button  style="margin-top: 4%" [routerLink]="['/edit-profile']" > <ion-icon name="person"></ion-icon> </ion-button>
+        <ion-button  style="margin-top: 4%" > <ion-icon name="notifications-outline"></ion-icon>  </ion-button>
+        </ion-item>
+      </div>
+  </ion-buttons>
+  </ion-toolbar>
+
+
+  <ion-row >
+
+      <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >
+     
+
+        <ion-list lines="none"  *ngIf="edit==true">
+
+
+          <ion-row >
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+            <ion-item *ngFor="let item of posts" >
+            <img class="circular" src="../assets/user.png" width="270px" >
+            </ion-item>
+              
+             <ion-row  class="ion-padding"  >
+             <ion-col sizeLg="12" sizeMd="12" sizeXs="12" > 
+            <h5> Adresse </h5>   
+            </ion-col>
+            </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Numero</ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="number" >  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col sizeLg="8" sizeMd="8" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Adresse</ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="street">  </ion-input>
+                </ion-item>
+              </ion-col>
+             </ion-row>
+
+            <ion-row  class="ion-padding"  >
+              <ion-col sizeLg="5" sizeMd="5" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">CP</ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="zip" >  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col sizeLg="7" sizeMd="7" sizeXs="12" > 
+                <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Ville</ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="city">  </ion-input>
+                </ion-item>
+              </ion-col>
+             </ion-row>
+
+             <ion-item  class="ion-padding">
+              <h5> Téléphone (s)</h5>    
+                <ion-button   slot="end" ion-button outline item-end small color="success" (click)="editphone()" *ngIf="formphone==false"><ion-icon ios="ios-add" md="md-add"></ion-icon></ion-button>
+                <ion-button   slot="end"ion-button outline item-end small color="success" (click)="editphone()" *ngIf="formphone==true"><ion-icon ios="ios-close" md="md-close"></ion-icon></ion-button>
+              </ion-item>
+        
+
+              <ion-row class="ion-padding" *ngIf="formphone==true"  >
+                <ion-col sizeLg="4" sizeMd="4" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                    <ion-label color="dark" position="stacked">Indicatif</ion-label>
+                    <ion-input inputmode="text"[(ngModel)]="indicatif" >  </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col sizeLg="8" sizeMd="8" sizeXs="12" > 
+                  <ion-item class="roundedInput">
+                  <ion-label color="dark" position="stacked">Numéro</ion-label>
+                  <ion-input inputmode="text"[(ngModel)]="phone" >  </ion-input>
+                </ion-item>
+                </ion-col>
+               </ion-row>
+
+              <ion-item *ngIf="formphone==true" >
+                <div class="item-note ion-padding" slot="end">
+                <ion-button color="success" size="medium" (click)="SavePhone()">Ajouter</ion-button>
+                </div>
+              </ion-item>
+
+        
+              <ion-item *ngFor="let item of postsphone" >
+                ({{item.indicative}})   {{item.phoneNumber}}    {{item.numberType}}<br>
+              </ion-item>
+
+                <ion-item  class="ion-padding">
+                <h5> E-mail</h5>    
+                </ion-item>
+
+
+                <ion-item *ngFor="let item of posts" >
+                  {{item.email}}  <br>
+                </ion-item>
+
+
+         
+              </ion-col>   
+
+              <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >    
+              <ion-item *ngFor="let item of posts" >
+              
+                <h3>  <b> {{item.profile.firstName}} {{item.profile.lastName}} </b></h3>   <br>
+              </ion-item>
+
+
+
+              <ion-segment  (ionChange)="segmentChanged($event)" [(ngModel)]="segType" scrollable value="info">
+                <ion-segment-button value="info" layout="icon-start">
+                  <ion-label>Mes informations</ion-label>
+                  <ion-icon name="person"></ion-icon>
+                </ion-segment-button>
+     
+
+              </ion-segment>
+
+              
+              <ng-container [ngSwitch]="segType">
+                <div *ngSwitchCase="'info'">
+
+                  <ion-item *ngFor="let item of posts" >
+                    <h5>   Infomations génerales</h5>      
+                  </ion-item>  
+                  
+
+                  <ion-item >
+                    <ion-label> 
+                      <ion-item class="roundedInput">
+                        <ion-label color="dark" position="stacked">Nom</ion-label>
+                        <ion-input inputmode="text"[(ngModel)]="lastname" >  </ion-input>
+                      </ion-item>
+                      </ion-label> 
+                      <ion-label> 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Prénom</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="firstname">  </ion-input>
+                        </ion-item>
+                      </ion-label> 
+                    </ion-item>
+
+      
+                <ion-item >
+                  <ion-label> 
+                     <b>Né(e) le </b> <br>
+                    </ion-label> 
+                    <ion-label> 
+                      <ion-item class="roundedInput">
+                        <ion-label position="floating">Date de naissance</ion-label>
+                        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="birthdate"></ion-datetime>
+                      </ion-item>
+                    </ion-label> 
+                  </ion-item>
+
+
+
+
+                  <ion-item >
+                    <ion-label> 
+                      <ion-item class="roundedInput">
+                        <ion-label color="dark" position="stacked">Lieu de naissance</ion-label>
+                        <ion-input inputmode="text"[(ngModel)]="birthplace">  </ion-input>
+                      </ion-item>
+                      </ion-label> 
+                      <ion-label> 
+                        <ion-item class="roundedInput">
+                          <ion-label color="dark" position="stacked">Pays de naissance</ion-label>
+                          <ion-input inputmode="text"[(ngModel)]="countrybirth">  </ion-input>
+                        </ion-item>
+                      </ion-label> 
+                    </ion-item>
+
+          
+                <ion-item >
+                <ion-label> 
+                   <b>Nationalité </b> <br>
+                  </ion-label> 
+                  <ion-label> 
+                    <ion-item class="roundedInput">
+                      <ion-label color="dark" position="stacked">Nationalité</ion-label>
+                      <ion-input inputmode="text"[(ngModel)]="nationality">  </ion-input>
+                    </ion-item>
+                  </ion-label> 
+                </ion-item>
+
+        
+                    <ion-item >
+                      <ion-label> 
+                         <b>Satut</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Satut </ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="maritalstatus">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+      
+
+             
+                      <ion-item >
+                        <ion-label> 
+                           <b>Nombre d'enfant</b> <br>
+                          </ion-label> 
+                          <ion-label> 
+                            <ion-item class="roundedInput">
+                              <ion-label color="dark" position="stacked">Nombre d'enfant </ion-label>
+                              <ion-input inputmode="text"[(ngModel)]="childnumber">  </ion-input>
+                            </ion-item>
+                          </ion-label> 
+                        </ion-item>
+      
+                        
+
+
+                    <ion-item >
+                      <ion-label> 
+                         <b>Nom de mariage</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Nom de mariage </ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="maritalname">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+      
+
+
+                      <ion-item >
+                        <ion-label> 
+                           <b>Niveau d'étude</b> <br>
+                          </ion-label> 
+                          <ion-label> 
+                            <ion-item class="roundedInput">
+                              <ion-label color="dark" position="stacked">Niveau d'étude</ion-label>
+                              <ion-input inputmode="text"[(ngModel)]="studieslevel">  </ion-input>
+                            </ion-item>
+                          </ion-label> 
+                        </ion-item>
+        
+    
+
+                
+                    <ion-item >
+                      <ion-label> 
+                         <b>Numero de sécurité social</b> <br>
+                        </ion-label> 
+                        <ion-label> 
+                          <ion-item class="roundedInput">
+                            <ion-label color="dark" position="stacked">Numero de sécurité social </ion-label>
+                            <ion-input inputmode="text"[(ngModel)]="socialnumber">  </ion-input>
+                          </ion-item>
+                        </ion-label> 
+                      </ion-item>
+      
+                 
+            
+                      <ion-item  >
+                        <h5>   Infomations bancaires</h5>    
+                      </ion-item>
+
+                        <ion-row class="ion-padding" >
+                          <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                            <b>   NOM / DOMICILATION </b>
+                          </ion-col>
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                            <b>  IBAN </b>
+                          </ion-col>
+                          <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                            <b>  BIC </b>
+                          </ion-col>
+                         </ion-row>
+    
+                        <ion-row *ngFor="let item of postsbanks" class="ion-padding"  >
+                          <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                            {{item.name}} {{item.domiciliation}}
+                          </ion-col>
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                            {{item.iban}} 
+                          </ion-col>
+                          <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                            {{item.rib}} 
+                          </ion-col>
+                         </ion-row>
+            
+                   
+                        <ion-item  class="ion-padding" >
+                          <h5> Ajouter un RIB</h5>    
+                            <ion-button   slot="end" ion-button outline item-end small color="success" (click)="editbank()" *ngIf="formbank==false"><ion-icon ios="ios-add" md="md-add"></ion-icon></ion-button>
+                            <ion-button   slot="end"ion-button outline item-end small color="success" (click)="editbank()" *ngIf="formbank==true"><ion-icon ios="ios-close" md="md-close"></ion-icon></ion-button>
+                        </ion-item>
+                  
+
+
+                        <ion-item *ngIf="formbank==true" >
+                          <ion-label> 
+                            <ion-item class="roundedInput">
+                              <ion-label color="dark" position="stacked">Nom </ion-label>
+                              <ion-input inputmode="text"[(ngModel)]="namebank" >  </ion-input>
+                            </ion-item>
+                            </ion-label> 
+                            <ion-label> 
+                              <ion-item class="roundedInput">
+                                <ion-label color="dark" position="stacked">Domiciliation</ion-label>
+                                <ion-input inputmode="text"[(ngModel)]="dombank">  </ion-input>
+                              </ion-item>
+                            </ion-label> 
+                          </ion-item>
+
+
+                          <ion-item *ngIf="formbank==true" >
+                            <ion-label> 
+                              <ion-item class="roundedInput">
+                                <ion-label color="dark" position="stacked">IBAN</ion-label>
+                                <ion-input inputmode="text"[(ngModel)]="iban" >  </ion-input>
+                              </ion-item>
+                              </ion-label> 
+                              <ion-label> 
+                                <ion-item class="roundedInput">
+                                  <ion-label color="dark" position="stacked">BIC</ion-label>
+                                  <ion-input inputmode="text"[(ngModel)]="bic">  </ion-input>
+                                </ion-item>
+                              </ion-label> 
+                            </ion-item>
+
+
+    
+                            <ion-item *ngIf="formbank==true" >
+                              <div class="item-note ion-padding" slot="end">
+                                <ion-button color="success" size="medium" (click)="SaveBank()">Ajouter</ion-button>
+                              </div>
+                           </ion-item>
+
+
+    
+    
+                        <ion-item  >
+                          <div class="item-note ion-padding" slot="end">
+                            <ion-button color="danger" size="medium" (click)="editpage()" >Annuler </ion-button>
+                            <ion-button color="success" size="medium" (click)="doSaveProfil()">Enregistrer</ion-button>
+                          </div>
+                      </ion-item>
+
+                    </div>
+                <div *ngSwitchCase="'portage'">
+                  <ion-item *ngFor="let item of posts" >
+                    <h5>   Infomations portage</h5>      
+                  </ion-item>
+    
+             
+                </div>
+              </ng-container>
+            </ion-col>
+        </ion-row>
+
+       
+      </ion-list>
+
+        <ion-list lines="none"  *ngIf="edit==false">
+          <ion-row >
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+              <ion-item *ngFor="let item of posts" >
+                  <img class="circular" src="../assets/user.png" width="270px" >
+                </ion-item>
+
+
+            <ion-item  >
+              <h5> Adresse</h5>   
+            </ion-item>
+
+            <ion-item >
+              {{number}}  {{street}} <br>
+              {{zip}}  {{city}} <br>
+            </ion-item>
+
+
+              <ion-item >
+                <h5>  Télephone(s)</h5> 
+              </ion-item>
+              <ion-item *ngFor="let item of postsphone" >
+                ({{item.indicative}})   {{item.phoneNumber}}    {{item.numberType}}<br>
+              </ion-item>
+
+                <ion-item >
+              <h5> E-mail</h5>    
+            </ion-item>
+            <ion-item *ngFor="let item of posts" >
+              {{item.email}}  <br>
+              </ion-item>
+
+              <section class="ion-padding">
+                <ion-button color="secondary" href="mailto:{{email}}" style="padding-left: 2px;" >Contacter</ion-button>
+              </section>
+   
+   
+              </ion-col>   
+
+              <ion-col sizeLg="8" sizeMd="8" sizeXs="12" >    
+              <ion-item *ngFor="let item of posts" >
+                <div class="item-note" slot="end">
+                  <ion-button ion-button item-end small color="primary" (click)="editpage()"><ion-icon ios="ios-brush" md="md-brush"></ion-icon></ion-button>
+                </div>
+                <h3>  <b> {{item.profile.firstName}} {{item.profile.lastName}}</b></h3>   <br>
+              </ion-item>
+
+     
+
+
+              <ion-segment  (ionChange)="segmentChanged($event)" [(ngModel)]="segType" scrollable value="info">
+                <ion-segment-button value="info" layout="icon-start">
+                  <ion-label>Mes informations</ion-label>
+                  <ion-icon name="person"></ion-icon>
+                </ion-segment-button>
+               
+
+              </ion-segment>
+
+              
+              <ng-container [ngSwitch]="segType">
+                <div *ngSwitchCase="'info'">
+
+                  <ion-item *ngFor="let item of posts" >
+                    <h5>   Infomations génerales</h5>      
+                  </ion-item>       
+                  <ion-item *ngFor="let item of posts" >
+                  <ion-label> 
+                     <b>Date de naissance </b> <br>
+                     <br>
+                     <br>
+                     <b> Nationalité </b><br>
+                     <b>Statut marital</b><br>
+                     <b>Nom de mariage</b><br>
+                     <b>Nombre d'enfant </b><br>
+                    </ion-label> 
+                    <ion-label> 
+                  {{item.profile.birthdate | date: 'dd/MM/yyyy'}}  <br>
+                  {{item.profile.birthPlace}}<br>
+                  {{item.profile.countryBirth}}<br>
+                  {{item.profile.nationality}}<br>
+                  {{item.profile.maritalStatus}}<br>
+                  {{item.profile.maritalname}}<br>
+                  {{item.profile.childNumber}}<br>
+                    </ion-label> 
+                  </ion-item>
+    
+    
+                  <ion-item *ngFor="let item of posts" >
+                    <ion-label> 
+                       <b>Niveau d'études</b> <br>
+                      </ion-label> 
+                      <ion-label> 
+                        {{item.profile.studiesLevel}}  <br>
+                      </ion-label> 
+                    </ion-item>
+    
+    
+                  <ion-item *ngFor="let item of posts" >
+                    <ion-label> 
+                      <b>  Numéro de sécurité social </b> 
+                    </ion-label> 
+                    <ion-label> 
+                      {{item.profile.socialNumber}}<br>           
+                      </ion-label> 
+                    </ion-item>
+    
+                      <ion-item >
+                        <h5>   Infomations bancaires</h5>    
+                      </ion-item>
+
+
+                      <ion-row class="ion-padding" >
+                        <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                          <b>   NOM / DOMICILATION </b>
+                        </ion-col>
+                        <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                          <b>  IBAN </b>
+                        </ion-col>
+                        <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                          <b>  BIC </b>
+                        </ion-col>
+                       </ion-row>
+  
+                      <ion-row *ngFor="let item of postsbanks" class="ion-padding"  >
+                        <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                          {{item.name}} {{item.domiciliation}}
+                        </ion-col>
+                        <ion-col sizeLg="6" sizeMd="6" sizeXs="12" > 
+                          {{item.iban}} 
+                        </ion-col>
+                        <ion-col sizeLg="3" sizeMd="3" sizeXs="12" > 
+                          {{item.rib}} 
+                        </ion-col>
+                       </ion-row>
+          
+    
+                        <ion-item *ngFor="let item of posts" >
+                          date de création :  {{item.profile.created | date: 'dd/MM/yyyy H:mm'}}
+                      </ion-item>
+
+                    </div>
+             
+              </ng-container>
+            </ion-col>
+        </ion-row>
+
+       
+      </ion-list>
+  
+
+
+
+</ion-col>
+  
+
+
+<ion-col sizeLg="4" sizeMd="4" sizeXs="12" >
+
+</ion-col>
+   
+  
+</ion-row>
+
+</ion-content>

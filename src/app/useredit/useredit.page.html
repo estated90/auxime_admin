@@ -1,0 +1,96 @@
+
+
+
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>  Modifier utilisateur </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="page" >
+  
+
+   
+    
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+  
+        <ion-col size-md="3" size-lg="3" size-xs="12">
+        </ion-col>
+  
+        <ion-col align-self-center size-md="6" size-lg="6" size-xs="12">
+  
+
+  
+            <ion-list  >
+              <ion-list-header color="light">
+                <ion-label class="fw700">Profil</ion-label>
+              </ion-list-header>
+           
+    
+
+           <ion-item>
+                  <ion-label color="primary" position="stacked">Prénom</ion-label>
+                  <ion-input type="text"  [(ngModel)]="firstname"></ion-input>
+                </ion-item>
+          <ion-item>
+              <ion-label color="primary" position="stacked"> Nom </ion-label>
+            <ion-input type="text"  [(ngModel)]="lastname"></ion-input>
+          </ion-item>
+
+             <ion-item>
+                <ion-label color="primary" position="stacked"> Email  </ion-label>
+               <ion-input type="email" [(ngModel)]="email"></ion-input>
+             </ion-item>
+
+             <ion-item>
+              <ion-label color="primary" position="stacked"> Adresse  </ion-label>
+             <ion-input type="text"  [(ngModel)]="address"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label color="primary" position="stacked"> CP  </ion-label>
+             <ion-input type="text" [(ngModel)]="cp"></ion-input>
+            </ion-item>
+        
+             <ion-item>
+                <ion-label color="primary" position="stacked"> Ville </ion-label>
+               <ion-input type="text" [(ngModel)]="city"></ion-input>
+             </ion-item>
+
+             <ion-item>
+                <ion-label color="primary" position="stacked">Téléphone</ion-label>
+               <ion-input type="text"  [(ngModel)]="phone"></ion-input>
+             </ion-item>
+      
+       
+             <ion-item >
+              <ion-label color="dark" position="stacked">Modifier le role</ion-label>
+              <ion-select [(ngModel)]="role"   okText="Ok" cancelText="Annuler">
+                <ion-select-option value="1"> client</ion-select-option>
+                <ion-select-option value="2"> admin</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+
+  
+          </ion-list>
+
+
+          <ion-button size="medium" expand="full" shape="round" color="secondary"  (click)="doSave()" >Enregister</ion-button>
+          </ion-col>
+          <ion-col size-md="3" size-lg="3" size-xs="12">
+          </ion-col>
+    
+        </ion-row>
+      </ion-grid>
+    
+     
+ 
+    
+  
+  </ion-content>
